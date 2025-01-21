@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TextHPOverrideController
+  m_Controller: {fileID: 9100000, guid: bba3baa5b4f67b544bebd2cba7a0c1fe, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: db4cd083e5ff2be40af3fac12c42d142, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 77fd6a319f5806240b8be0ad793b5a65, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ea94526447a8a2147ac899046f2ba107, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c70dbf0434f0aa548a3342a4d248cec6, type: 2}
