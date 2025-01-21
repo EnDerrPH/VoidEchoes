@@ -8,3 +8,10 @@ public enum GeyserPhase
     Done,
     Default
 }
+
+public enum ParticleType
+{
+    Ammo,
+    Trap,
+    Default
+}

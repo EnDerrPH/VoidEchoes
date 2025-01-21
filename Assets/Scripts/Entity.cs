@@ -40,11 +40,18 @@ public class Entity : MonoBehaviour
         }
     }
 
-    private void OnParticleCollision(GameObject other)
+
+    public virtual void OnParticleCollision(GameObject other)
     {    
-        if(other.GetComponent<ParticleDamageHandler>() != null)
+        if(other.GetComponent<ParticleDamageHandler>() == null)
+        {
+            return;
+        }
+
+        if(other.GetComponent<ParticleDamageHandler>().ParticleType != ParticleType.Ammo)
         {
             OnHit(other.GetComponent<ParticleDamageHandler>());
+            return;
         }
     }
 

@@ -2789,7 +2789,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339c440427568b24eac51ec61adefcb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 30
+  _particleType: 1
 --- !u!199 &1058891484
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -8447,7 +8448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 339c440427568b24eac51ec61adefcb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 30
+  _particleType: 1
 --- !u!199 &1613834647
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -14926,6 +14928,18 @@ PrefabInstance:
     - target: {fileID: 2034932026971466739, guid: 156db84242ea52d40af460d8e5b80fea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720581251101611380, guid: 156db84242ea52d40af460d8e5b80fea, type: 3}
+      propertyPath: CollisionModule.multiplyColliderForceByCollisionAngle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893495939899811647, guid: 156db84242ea52d40af460d8e5b80fea, type: 3}
+      propertyPath: _damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2893495939899811647, guid: 156db84242ea52d40af460d8e5b80fea, type: 3}
+      propertyPath: _particleType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6948090252987072001, guid: 156db84242ea52d40af460d8e5b80fea, type: 3}
       propertyPath: m_Name
