@@ -17,7 +17,7 @@ public class UIGameHandler : UIBaseScript
     [SerializeField] Sprite _shipBorderDeactivateSprite;
     [Header("Scripts")]
     [SerializeField] PlayerWeapon _playerWeapon;
-    [SerializeField] PlayerMovement _playerMovement;
+    [SerializeField] ShipMovement _shipMovement;
     [SerializeField] Player _player;
     [SerializeField] Button _shipButton;
     [SerializeField] Image _shipBorder;
@@ -90,7 +90,7 @@ public class UIGameHandler : UIBaseScript
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         _playerWeapon = player.GetComponent<PlayerWeapon>();
-        _playerMovement = player.GetComponent<PlayerMovement>();
+        _shipMovement = player.GetComponent<ShipMovement>();
         _player = player.GetComponent<Player>();
         _playerMaxHP = _player.HitPoints;
     }
@@ -129,9 +129,9 @@ public class UIGameHandler : UIBaseScript
     public override void AddListener()
     {
         _shipButton.onClick.AddListener(OnShipButton);
-        _playerMovement.OnMoveForwardEvent.AddListener(() => { CancelActivatedUI(); _utilities.ToggleButton(_shipButton);});
-        _playerMovement.OnMoveForwardEvent.AddListener(ToggleShipImage);
-        _playerMovement.OnTurnEvent.AddListener(ToggleShipImage);
+        _shipMovement.OnMoveForwardEvent.AddListener(() => { CancelActivatedUI(); _utilities.ToggleButton(_shipButton);});
+        _shipMovement.OnMoveForwardEvent.AddListener(ToggleShipImage);
+        _shipMovement.OnTurnEvent.AddListener(ToggleShipImage);
         _player.OnHitEvent.AddListener(SetShipHealthColor);
     }
 }

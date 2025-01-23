@@ -10,7 +10,7 @@ public class PlayerWeapon : Weapon
     [SerializeField] List<Enemy> _enemiesInRange = new List<Enemy>();
     [SerializeField] RectTransform _crosshair;
     [SerializeField] Transform _targetObject;
-    [SerializeField] PlayerMovement _playerMovement;
+    [SerializeField] ShipMovement _playerMovement;
     [SerializeField] Transform _shipTransform;
     [SerializeField] float _targetDistance;
     [SerializeField] AudioClip _attackSFX;
