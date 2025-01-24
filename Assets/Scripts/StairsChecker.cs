@@ -11,7 +11,7 @@ public class StairsChecker : MonoBehaviour
         {
             _timer += Time.deltaTime;
 
-            if(_timer >= .1f)
+            if(_timer >= .3f)
             {
                 _characterMovement.Movement = new Vector2(0f,0f);
                 _timer = 0f;

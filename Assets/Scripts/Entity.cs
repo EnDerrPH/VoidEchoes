@@ -48,7 +48,7 @@ public class Entity : MonoBehaviour
             return;
         }
 
-        if(other.GetComponent<ParticleDamageHandler>().ParticleType != ParticleType.Ammo)
+        if(other.GetComponent<ParticleDamageHandler>().ParticleType == ParticleType.Ammo)
         {
             OnHit(other.GetComponent<ParticleDamageHandler>());
             return;

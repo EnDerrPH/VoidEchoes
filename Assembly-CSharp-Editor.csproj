@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Imported Assets\SlimUI\Editor\SlimUIWindow.cs" />
+    <Compile Include="Assets\Imported Assets\RobotSphere\Assets\Scripts\Editor\RobotFreeAnimEditor.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\Audio Settings\Editor\PieMenuAudioSettingsEditor.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\CustomAttributes\OnValueChangeAttribute\Editor\OnValueChangeAttributeDrawer.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\CustomAttributes\ReadonlyAttribute\Editor\ReadonlyDrawer.cs" />

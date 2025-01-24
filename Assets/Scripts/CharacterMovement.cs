@@ -6,8 +6,16 @@ public class CharacterMovement : MonoBehaviour
     
     [SerializeField] float _moveSpeed;
     [SerializeField] float _mouseSensitivity;
+    [SerializeField] GameObject _camera;
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioClip _stairsFootStepSFX;
+    [SerializeField] AudioClip _normalFootStepSFX;
+    [SerializeField] bool _isFacingStairs;
+    [SerializeField] bool _isGrounded;
+    [SerializeField] bool _isGoingUp;
+    [SerializeField] float _gravityMultiplier;
+    [SerializeField] float _stairUpSpeed;
+    [SerializeField] float _stairDownSpeed;
     Animator _animator;
     string _currentAnimation;
     string _idle = "Idle";
@@ -18,11 +26,6 @@ public class CharacterMovement : MonoBehaviour
     Rigidbody _rb;
     bool _isMoving;
     bool _isMouseRotate;   
-    [SerializeField] bool _isFacingStairs;
-    [SerializeField] bool _isGrounded;
-    [SerializeField] bool _isGoingUp;
-    [SerializeField] float _gravityMultiplier;
-
     public bool IsFacingSairs {get => _isFacingStairs; set => _isFacingStairs = value;}
     public Vector2 Movement {get => _movement; set => _movement = value;}
 
@@ -70,10 +73,6 @@ public class CharacterMovement : MonoBehaviour
         {
             return;
         }
-        if(!_isMouseRotate)
-        {
-            return;
-        }
         Vector2 mouse = _mouseSensitivity * Time.deltaTime * new Vector2(Input.GetAxisRaw("Mouse X") , Input.GetAxisRaw("Mouse Y"));
         transform.Rotate(mouse.x * Vector3.up);
     }
@@ -100,28 +99,30 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
+
     private void OnCharacterMovement()
     {
         float ClampedY = Mathf.Clamp(_movement.y , 0f , 1f);
         float ClampedX = Mathf.Clamp(_movement.x , 0f , 0f);
-        // Vector3 moveDirection = (transform.forward * ClampedY + transform.right * ClampedX) * _moveSpeed;
+
         Vector3 moveDirection = (transform.forward * ClampedY + transform.right * ClampedX) * _moveSpeed;
-        _rb.AddForce(moveDirection, ForceMode.VelocityChange);
+        _rb.AddForce(moveDirection, ForceMode.Impulse);
         if(_isFacingStairs)
         {
             _movement.y = 1f;
-            transform.position = new Vector3(transform.position.x + moveDirection.x * Time.deltaTime, transform.position.y, transform.position.z);
+            //transform.position = new Vector3(transform.position.x + moveDirection.x * Time.deltaTime, transform.position.y, transform.position.z);
+            _rb.AddForce(moveDirection, ForceMode.Impulse);
             if(_movement.y > 0 && _isFacingStairs && _isGoingUp)
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, 90f, transform.rotation.z);
-                _moveSpeed = 4.5f;
+                _moveSpeed = _stairUpSpeed;
                 ChangeAnimation(_stairsUp, 0f);
             }
 
             if(_movement.y > 0 && _isFacingStairs && !_isGoingUp)
             {
                 transform.rotation = Quaternion.Euler(transform.rotation.x, -90f, transform.rotation.z);
-                _moveSpeed = .5f;
+                _moveSpeed = _stairDownSpeed;
                 ChangeAnimation(_stairsDown, 0f);
             }
             return;
@@ -131,15 +132,15 @@ public class CharacterMovement : MonoBehaviour
         if(_movement.x == 0 && _movement.y == 0)
         {
             _isMoving= false;
+            _rb.linearVelocity = Vector3.zero;
             ChangeAnimation(_idle, 0f);
         }
         _isMoving = true;
-        // transform.position = new Vector3(transform.position.x + moveDirection.x * Time.deltaTime, transform.position.y, transform.position.z + moveDirection.z * Time.deltaTime);
-        _rb.AddForce(moveDirection, ForceMode.VelocityChange);
+        _rb.AddForce(moveDirection, ForceMode.Impulse);
 
         if(_movement.y > 0 && !_isFacingStairs)
         {
-            _moveSpeed = 1f;
+            _moveSpeed = 10f;
             ChangeAnimation(_walkForward, 0f);
         }
     }

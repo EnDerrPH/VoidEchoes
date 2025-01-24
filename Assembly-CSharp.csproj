@@ -86,6 +86,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\References\MenuItemsTracker.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\FillAmountCalculator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemsRemover.cs" />
+    <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuPositionSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\ThemeEditor\ThemedUIElement.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuAudioSettingsHandler.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconOffsetChangeHandler.cs" />
     <Compile Include="Assets\Scripts\CollisionHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\References\PieMenuElements.cs" />
+    <Compile Include="Assets\Scripts\ReflectionTriggerHandler.cs" />
     <Compile Include="Assets\Scripts\Entity.cs" />
     <Compile Include="Assets\Scripts\EnemyWeapon.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Toggler\PieMenuToggler.cs" />
@@ -104,6 +106,7 @@
     <Compile Include="Assets\Scripts\UI\MainMenuCameraHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\SelectionCalculator.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\UtilitiesSO.cs" />
+    <Compile Include="Assets\Scripts\ReflectionHandler.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\CustomShapeButton.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemsCreator.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Info Panel Settings Handler\PieMenuInfoPanelSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuInfoPanelSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconMover.cs" />
+    <Compile Include="Assets\Imported Assets\RobotSphere\Assets\Scripts\RobotFreeAnim.cs" />
     <Compile Include="Assets\Scripts\ParticleDamageHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\MenuItemColorSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\Old Input System\MouseAndKeyboard_OLD_INPUT_SYSTEM.cs" />
@@ -145,6 +149,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Demos\Displaying a Pie Menu\Old Input System\DisplayWithOldInputSystemDemo.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\New Input System\PieMenuControls.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuBackgroundSettingsHandler.cs" />
+    <Compile Include="Assets\Scripts\SetStairTrigger.cs" />
     <Compile Include="Assets\Scripts\CameraMiniMapHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\PieMenuDisplayer.cs" />
     <Compile Include="Assets\Imported Assets\Sci-Fi UI\Demo_Assets\scripts\GUI_Demo.cs" />

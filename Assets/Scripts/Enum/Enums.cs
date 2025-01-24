@@ -15,3 +15,11 @@ public enum ParticleType
     Trap,
     Default
 }
+
+public enum GameScene
+{
+    MainMenu,
+    Home,
+    Map,
+    Default
+}
