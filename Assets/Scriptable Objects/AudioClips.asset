@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a201f176acfe0e640b53c87725124198, type: 3}
+  m_Name: AudioClips
+  m_EditorClassIdentifier: 
+  _mainMenuButtonSFX: {fileID: 8300000, guid: eb51df4d4ab16c94ca077d6fa8adf4c7, type: 3}
+  _groundStepSFX: {fileID: 0}
+  _stairStepSFX: {fileID: 0}
+  _mainMenuBGM: {fileID: 8300000, guid: add1f0a441a9ec745aed7db2d795eefb, type: 3}
+  _homeBGM: {fileID: 8300000, guid: 0db4e4582a1268f4a833a24578f94cd2, type: 3}
+  _mapBGM: {fileID: 0}
+  _hyperDriveSFX: {fileID: 8300000, guid: aaa3c34456ab1a146a195b5282e7d76d, type: 3}

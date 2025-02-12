@@ -715,7 +715,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c945c783df4373c46b080c9b10ccce21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraMovementSFX: {fileID: 8300000, guid: aaa3c34456ab1a146a195b5282e7d76d, type: 3}
   _audioSource: {fileID: 837183411}
   _hyperDrive: {fileID: 1699037345}
 --- !u!224 &787577049 stripped
@@ -1492,6 +1491,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
+      propertyPath: _audioClipsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 3360305470d12904ba77627cae1c7cac, type: 2}
     - target: {fileID: 2486505041399875188, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1944,7 +1947,6 @@ MonoBehaviour:
   - {fileID: 604564569}
   - {fileID: 332402318}
   _audioSourceUI: {fileID: 837183411}
-  _buttonSFX: {fileID: 8300000, guid: eb51df4d4ab16c94ca077d6fa8adf4c7, type: 3}
   _playerableDirector: {fileID: 1922959350}
 --- !u!320 &1922959350
 PlayableDirector:

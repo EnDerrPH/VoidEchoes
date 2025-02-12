@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameScene _scene;
     [SerializeField] UtilitiesSO _utilities;
+    [SerializeField] AudioClipsSO _audioClipsSO;
 
     public static GameManager instance;
 
@@ -46,6 +47,11 @@ public class GameManager : MonoBehaviour
     public GameScene GetScene()
     {
         return _scene;
+    }
+
+    public AudioClipsSO GetAudioClips()
+    {
+        return _audioClipsSO;
     }
 
     public void SetScene(GameScene scene)

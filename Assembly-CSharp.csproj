@@ -155,6 +155,7 @@
     <Compile Include="Assets\Imported Assets\Sci-Fi UI\Demo_Assets\scripts\GUI_Demo.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuGeneralSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\MenuItemRestorer.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\AudioClipsSO.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Audio\CheckSFXVolume.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuSelectionSettings.cs" />
     <Compile Include="Assets\Scripts\UI\UIGameHandler.cs" />
