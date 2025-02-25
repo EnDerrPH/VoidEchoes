@@ -8,14 +8,16 @@ public class AudioClipsSO : ScriptableObject
     [SerializeField] AudioClip _stairStepSFX;
     [SerializeField] AudioClip _mainMenuBGM;
     [SerializeField] AudioClip _homeBGM;
+    [SerializeField] AudioClip _characterSelectionBGM;
     [SerializeField] AudioClip _mapBGM;
     [SerializeField] AudioClip _hyperDriveSFX;
 
-    public AudioClip MainMenuButtonSFX {get => _mainMenuButtonSFX; set => _mainMenuButtonSFX = value;}
-    public AudioClip GroundStepSFX {get => _groundStepSFX; set => _groundStepSFX = value;}
-    public AudioClip StairStepSFX {get => _stairStepSFX; set => _stairStepSFX = value;}
-    public AudioClip MainMenuBGM {get => _mainMenuBGM; set => _mainMenuBGM = value;}
-    public AudioClip HomeBGM {get => _homeBGM; set => _homeBGM = value;}
-    public AudioClip MapBGM {get => _mapBGM; set => _mapBGM = value;}
-    public AudioClip HyperDriveSFX {get => _hyperDriveSFX; set => _hyperDriveSFX = value;}
+    public AudioClip MainMenuButtonSFX {get => _mainMenuButtonSFX;}
+    public AudioClip GroundStepSFX {get => _groundStepSFX;}
+    public AudioClip StairStepSFX {get => _stairStepSFX;} 
+    public AudioClip MainMenuBGM {get => _mainMenuBGM;}
+    public AudioClip CharacterSelectionBGM {get => _characterSelectionBGM;}
+    public AudioClip HomeBGM {get => _homeBGM;}
+    public AudioClip MapBGM {get => _mapBGM;}
+    public AudioClip HyperDriveSFX {get => _hyperDriveSFX;}
 }

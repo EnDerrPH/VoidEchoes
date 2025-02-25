@@ -131,7 +131,7 @@
                     "name": "",
                     "id": "744ec94f-3a75-42b0-b2d2-3b62c2b3d85e",
                     "path": "<Keyboard>/w",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "",
                     "action": "WalkForward",

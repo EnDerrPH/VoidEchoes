@@ -1,28 +1,14 @@
 using UnityEngine;
 
-public class StairsChecker : MonoBehaviour
+public class StairsChecker : BaseTriggerManager
 {
-    [SerializeField] CharacterMovement _characterMovement;
-    [SerializeField] float _timer;
-    bool _isSet;
-    void Update()
+    [SerializeField] bool _bottomTrigger;
+
+    void OnTriggerEnter(Collider  collision)
     {
-        if(_isSet)
+        if(collision.gameObject.tag == "Player")
         {
-            _timer += Time.deltaTime;
-
-            if(_timer >= .3f)
-            {
-                _characterMovement.Movement = new Vector2(0f,0f);
-                _timer = 0f;
-                _isSet = false;
-            }
+            _characterMovement.IsGoingUp = _bottomTrigger? true : false;
         }
-
-    }
-    void OnTriggerExit(Collider  collision)
-    {
-        _characterMovement.IsFacingSairs = false;
-        _isSet = true;
     }
 }

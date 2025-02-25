@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaec84fdb3a1be4db5e8e0a0860836c, type: 3}
+  m_Name: Darth Beydeer
+  m_EditorClassIdentifier: 
+  _characterIdNumber: 1
+  _characterName: Darth Beydeer
+  _ship: {fileID: 5434768167139157828, guid: 0759249650520274e96b1c5d3ca0a471, type: 3}
+  _character: {fileID: 2660121298222966616, guid: f78035332e7464942b6b87d1c557da6c, type: 3}
+  _characterIcon: {fileID: 21300000, guid: 380fb71107223b7488e1c520ab80a7c0, type: 3}

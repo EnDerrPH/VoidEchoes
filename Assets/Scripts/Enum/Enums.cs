@@ -19,6 +19,7 @@ public enum ParticleType
 public enum GameScene
 {
     MainMenu,
+    CharacterSelection,
     Home,
     Map,
     Default

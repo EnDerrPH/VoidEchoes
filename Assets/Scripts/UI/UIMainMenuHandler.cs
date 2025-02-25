@@ -10,7 +10,6 @@ public class UIMainMenuHandler : UIBaseScript
     [SerializeField] Button _settingsButton;
     [SerializeField] Button _exitButton;
     [SerializeField] Button []_mainMenuButtons;
-    [SerializeField] AudioSource _audioSourceUI;
     [SerializeField] PlayableDirector _playerableDirector;
     AudioClipsSO _audioClipSO;
 
@@ -29,14 +28,13 @@ public class UIMainMenuHandler : UIBaseScript
         _exitButton.onClick.AddListener(OnExit);
         foreach(Button button in _mainMenuButtons)
         {
-            button.onClick.AddListener(() => {PlayButtonSound(_audioClipSO.MainMenuButtonSFX, _audioSourceUI); });
+            button.onClick.AddListener(() => {PlayButtonSound(_audioClipSO.MainMenuButtonSFX, _audioSource); });
         }
     }
     
     private void OnPlay()
     {
         _playerableDirector.Play();
-        GameManager.instance.SetScene(GameScene.Home);
     }
     private void OnLoad()
     {

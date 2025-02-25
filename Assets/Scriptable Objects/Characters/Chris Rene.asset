@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abaec84fdb3a1be4db5e8e0a0860836c, type: 3}
+  m_Name: Chris Rene
+  m_EditorClassIdentifier: 
+  _characterIdNumber: 0
+  _characterName: Chris Rene
+  _ship: {fileID: 3924849305181301339, guid: 04c5e4295b47b7b408f7baa85a2994d7, type: 3}
+  _character: {fileID: 3336408599182588913, guid: e2cf0671ff37d814885bf5e8cc9e663c, type: 3}
+  _characterIcon: {fileID: 21300000, guid: 439be9c5d57220f47b0f4e9f5e6e5bb6, type: 3}
