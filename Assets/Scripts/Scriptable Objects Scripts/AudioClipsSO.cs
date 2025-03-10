@@ -9,7 +9,7 @@ public class AudioClipsSO : ScriptableObject
     [SerializeField] AudioClip _mainMenuBGM;
     [SerializeField] AudioClip _homeBGM;
     [SerializeField] AudioClip _characterSelectionBGM;
-    [SerializeField] AudioClip _mapBGM;
+    [SerializeField] AudioClip _gameBGM;
     [SerializeField] AudioClip _hyperDriveSFX;
 
     public AudioClip MainMenuButtonSFX {get => _mainMenuButtonSFX;}
@@ -18,6 +18,6 @@ public class AudioClipsSO : ScriptableObject
     public AudioClip MainMenuBGM {get => _mainMenuBGM;}
     public AudioClip CharacterSelectionBGM {get => _characterSelectionBGM;}
     public AudioClip HomeBGM {get => _homeBGM;}
-    public AudioClip MapBGM {get => _mapBGM;}
+    public AudioClip GameBGM {get => _gameBGM;}
     public AudioClip HyperDriveSFX {get => _hyperDriveSFX;}
 }

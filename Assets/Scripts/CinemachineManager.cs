@@ -9,7 +9,12 @@ public class CinemachineManager : MonoBehaviour
     void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _cinemachineCamera.Follow = _player;
+        SetCameraTarget(_player);
+    }
+
+    public void SetCameraTarget(Transform target)
+    {
+        _cinemachineCamera.Follow = target;
     }
     
 }

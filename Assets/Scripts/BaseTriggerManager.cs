@@ -2,25 +2,11 @@ using UnityEngine;
 
 public class BaseTriggerManager : MonoBehaviour
 {
-    [SerializeField] protected HomeSceneHandler _homeSceneHandler;
-    [SerializeField] protected CharacterMovement _characterMovement;
 
-    void Start()
-    {
-        _homeSceneHandler.PlayerHasSpawnEvent.AddListener(SetCharacterMovement);
-    }
+    [SerializeField] protected CharacterController _characterController;
 
-    void Update()
+    public virtual void Start()
     {
-        SetCharacterMovement();
-    }
-
-    private void SetCharacterMovement()
-    {
-        if(_characterMovement != null)
-        {
-            return;
-        }
-        _characterMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
+        _characterController = GameObject.FindAnyObjectByType<CharacterController>();
     }
 }

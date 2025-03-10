@@ -12,11 +12,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] AudioClipsSO _audioClipsSO;
     [SerializeField] CharacterDataList _characterDataList;
     [SerializeField] PlanetList _planetList;
+    [SerializeField] MapList _mapList;
     [SerializeField] CharacterData _characterData;
+    [SerializeField] MapsSO _map;
 
     public static GameManager instance;
 
-    public UnityEvent OnChangeSceneEvent;
+    public UnityEvent OnChangeSceneEvent, OnGMLoadedEvent;
 
     private void Awake()
     {
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        OnGMLoadedEvent.Invoke();
         _scene = GameScene.MainMenu;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -70,10 +73,23 @@ public class GameManager : MonoBehaviour
         return _characterDataList;
     }
 
+      public MapList GetMapList()
+    {
+        return _mapList;
+    }
+
     public PlayerData GetPlayerData()
     {
         return _playerData;
     }
+
+    public MapsSO GetMapSO()
+    {
+        return _map;
+    }
+
+
+
 
     public void SetScene(GameScene scene)
     {
@@ -83,5 +99,10 @@ public class GameManager : MonoBehaviour
     public void SetCharacterData(CharacterData characterData)
     {
         _characterData = characterData;
+    }
+
+    public void SetMapSO(MapsSO mapSO)
+    {
+        _map = mapSO;
     }
 }

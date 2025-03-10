@@ -2,11 +2,12 @@ using UnityEngine;
 
 public class OnStairTrigger : BaseTriggerManager
 {
+
     void OnTriggerEnter(Collider  collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            _characterMovement.IsFacingStairs = true;
+            _characterController.IsFacingStairs = true;
         }
     }
 
@@ -14,7 +15,7 @@ public class OnStairTrigger : BaseTriggerManager
     {
         if(collision.gameObject.tag == "Player")
         {
-            _characterMovement.IsFacingStairs = false;
+            _characterController.IsFacingStairs = false;
         }
     }
 }

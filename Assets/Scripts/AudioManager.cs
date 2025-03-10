@@ -40,7 +40,7 @@ public class AudioManager : UIBaseScript
             _audioSource.volume = 1f;
             _audioSource.clip = _audioClipSO.HomeBGM;
             break;
-            case GameScene.Map:
+            case GameScene.Game:
            // _audioSource.clip = _audioClipSO.MapBGM;
             break;
         }

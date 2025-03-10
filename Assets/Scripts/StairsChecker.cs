@@ -8,7 +8,7 @@ public class StairsChecker : BaseTriggerManager
     {
         if(collision.gameObject.tag == "Player")
         {
-            _characterMovement.IsGoingUp = _bottomTrigger? true : false;
+            _characterController.IsGoingUp = _bottomTrigger? true : false;
         }
     }
 }

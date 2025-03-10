@@ -21,6 +21,19 @@ public enum GameScene
     MainMenu,
     CharacterSelection,
     Home,
-    Map,
+    Game,
+    Default
+}
+
+public enum InteractableType
+{
+    Projector,
+    Default
+}
+
+public enum CharacterState
+{
+    PlayerControl,
+    OnMapDevice,
     Default
 }
