@@ -349,6 +349,10 @@ public class CharacterController : MonoBehaviour
 
     void OnCollisionStay(Collision collision)
     {
+        if(GameManager.instance.GetScene() != GameScene.Home)
+        {
+            return;
+        }
         if(collision.gameObject.CompareTag("Stairs") && _isFacingStairs)
         {
             float scaleY =  collision.gameObject.transform.localScale.y + _stairOffset;
