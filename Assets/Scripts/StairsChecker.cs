@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StairsChecker : BaseTriggerManager
+public class StairsChecker : MonoBehaviour
 {
     [SerializeField] bool _bottomTrigger;
 
@@ -8,7 +8,8 @@ public class StairsChecker : BaseTriggerManager
     {
         if(collision.gameObject.tag == "Player")
         {
-            _characterController.IsGoingUp = _bottomTrigger? true : false;
+            CharacterController characterController = collision.gameObject.GetComponent<CharacterController>();
+            characterController.IsGoingUp = _bottomTrigger? true : false;
         }
     }
 }

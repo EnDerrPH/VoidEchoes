@@ -157,7 +157,6 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconGetter.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconResizer.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\MapList.cs" />
-    <Compile Include="Assets\Scripts\UI\MapCanvasHandler.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Misc\ExtraLinks.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Demos\Displaying a Pie Menu\Old Input System\DisplayWithOldInputSystemDemo.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\New Input System\PieMenuControls.cs" />
@@ -181,6 +180,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconScaleChangeHandler.cs" />
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MapHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Calculators\MenuItemSpacingCalculator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuPreviewModeSettingsHandler.cs" />
     <Compile Include="Assets\Scripts\UI\CameraHomeHandler.cs" />
@@ -196,7 +196,6 @@
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Audio\CheckMusicVolume.cs" />
     <Compile Include="Assets\Scripts\InteractableCanvasHandler.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
-    <Compile Include="Assets\Scripts\BaseTriggerManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Singleton\PieMenuShared.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\MenuItemIconsSettingsHandler.cs" />
     <Compile Include="Assets\Scripts\Enum\Enums.cs" />

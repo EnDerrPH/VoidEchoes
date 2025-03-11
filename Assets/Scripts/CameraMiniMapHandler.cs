@@ -8,7 +8,6 @@ public class CameraMiniMapHandler : MonoBehaviour
     [SerializeField] float _zMaxClamp;
     [SerializeField] Transform _player;
     [SerializeField]  float _xOffset = 120f;
-    [SerializeField]  float _zOffset = 250f;
 
     void Update()
     {

@@ -8,7 +8,6 @@ public class ProjectorDeviceManager : InteractableHandler
    [SerializeField] float _minY;
    [SerializeField] float _maxY;
    [SerializeField] float _speed;
-
     void Update()
     {
         OpenProjector();
@@ -38,6 +37,5 @@ public class ProjectorDeviceManager : InteractableHandler
         }
         _hologram.SetActive(false);
         _topProjector.localPosition = new Vector3(_topProjector.localPosition.x, Mathf.Lerp(_topProjector.localPosition.y, _minY, Time.deltaTime * _speed), _topProjector.localPosition.z);
-        //ActivateCanvas(!_isOpen);
     }
 }

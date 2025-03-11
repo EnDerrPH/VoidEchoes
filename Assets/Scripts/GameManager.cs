@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
 
-    public UnityEvent OnChangeSceneEvent, OnGMLoadedEvent;
+    public UnityEvent OnChangeSceneEvent;
 
     private void Awake()
     {
@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        OnGMLoadedEvent.Invoke();
         _scene = GameScene.MainMenu;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }

@@ -3,6 +3,7 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class HomeSceneHandler : UIBaseScript
 {
@@ -17,20 +18,38 @@ public class HomeSceneHandler : UIBaseScript
    [SerializeField] private List<MapsSO> _mapList = new List<MapsSO>();
    [SerializeField] private List<Terrain> _terrainList = new List<Terrain>();
    [SerializeField] protected CharacterController _characterController;
-
+   [SerializeField] CanvasGroup _canvasGroup;
+   [SerializeField] float _elapsedTime = 0f;
+   [SerializeField] CinemachineManager _cinemachineManager;
+   bool _onMapDevice;
+   const float _fadeDuration = 3f;
+   const float _alphaIncreaseRate = .4f;
+   const float _targetAlpha = 1f;
    int _currentMapNumber;
 
    public UnityEvent PlayerHasSpawnEvent;
 
-   private void Awake()
+   void OnEnable()
    {
-      InitializePlayer();
+      SceneManager.sceneLoaded += OnSceneLoaded;
    }
 
-   public override void Start()
+   void OnDisable()
    {
-      InitializeMaps();
-      base.Start();
+      SceneManager.sceneLoaded -= OnSceneLoaded;
+   }
+
+   private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+   {
+      if (GameManager.instance != null)
+      {
+         InitializeHomeScene();
+      }
+   }
+
+   void Update()
+   {
+      SetAlpha();
    }
 
    public override void AddListener()
@@ -64,14 +83,33 @@ public class HomeSceneHandler : UIBaseScript
       _mapName.text = _mapList[_currentMapNumber].MapName;
    }
 
-   private void InitializePlayer()
+   private void InitializeHomeScene()
+   {
+      InitializeCharacter();
+      InitializeShip();
+      InitializeMaps();
+      InitializeCinemachine();
+   }
+
+   private void InitializeCharacter()
    {
       GameObject character = GameManager.instance.GetCharacterData().Character;
-      GameObject ship = GameManager.instance.GetCharacterData().Ship;
       GameObject characterObj = Instantiate(character, _playerPos.position, character.transform.rotation);
       _characterController = characterObj.GetComponent<CharacterController>();
-      GameObject shipObj = Instantiate(ship, _shipPos.position, ship.transform.rotation);
       PlayerHasSpawnEvent.Invoke();
+   }
+
+   private void InitializeShip()
+   {
+      GameObject ship = GameManager.instance.GetCharacterData().Ship;
+      GameObject shipObj = Instantiate(ship, _shipPos.position, ship.transform.rotation);
+   }
+
+   private void InitializeCinemachine()
+   {
+      _cinemachineManager.SetCameraTarget(_characterController.transform);
+      _characterController.OnMapDeviceEvent.AddListener(() =>{ SetIsActive(true); _cinemachineManager.SetTargetHologram();});
+      _characterController.OnPlayerControlEvent.AddListener(() =>{ DeactivateDevice(); _cinemachineManager.SetCameraTarget(_characterController.transform);});
    }
 
    private void InitializeMaps()
@@ -98,4 +136,33 @@ public class HomeSceneHandler : UIBaseScript
       _loadingSceneManager.LoadScene("GameScene");
       GameManager.instance.SetScene(GameScene.Game);
    }
+
+   private void SetAlpha()
+   {
+      if (_onMapDevice)
+      {
+         _elapsedTime += Time.deltaTime;
+   
+         if (_elapsedTime >= _fadeDuration)
+         {
+               _canvasGroup.alpha = Mathf.Clamp(_canvasGroup.alpha + _alphaIncreaseRate * Time.deltaTime, 0f, _targetAlpha);
+               if(_canvasGroup.alpha >= 1)
+               {
+                  _onMapDevice = false;
+               }
+         }
+      }
+   }
+
+   private void SetIsActive(bool isActive)
+   {
+      _onMapDevice = isActive;
+   }
+
+   private void DeactivateDevice()
+   {
+      _canvasGroup.alpha = 0;
+      _elapsedTime = 0f;
+   }
 }
+

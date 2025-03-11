@@ -7,20 +7,17 @@ public class CharacterController : MonoBehaviour
     
     [SerializeField] float _moveSpeed;
     [SerializeField] float _mouseSensitivity;
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioClip _stairsFootStepSFX;
-    [SerializeField] AudioClip _normalFootStepSFX;
     [SerializeField] bool _isFacingStairs;
     [SerializeField] bool _isGoingUp;
     [SerializeField] float _stairUpSpeed;
     [SerializeField] float _stairDownSpeed;
     [SerializeField] float _startSmoothSpeed;
     [SerializeField] float _stairOffset;
-    [SerializeField] Transform _origin;
     [SerializeField] CharacterState _characterState;
+    [SerializeField] bool _isMouseRotate; 
+    [SerializeField] Vector2 _movement;
     Transform _hologramView;
     InteractableHandler _interactableObject;
-    CinemachineManager _cinemachineManager;
     Animator _animator;
     string _currentAnimation;
     string _idle = "Idle";
@@ -37,20 +34,14 @@ public class CharacterController : MonoBehaviour
     float _gravityMultiplier = 10f;
     float _Ytimer = 0f;
     float _YcheckInterval = .2f;
-    [SerializeField] Vector2 _movement;
     Vector3 _moveDirection;
     Rigidbody _rb;
-    [SerializeField] bool _isMouseRotate; 
     public bool IsFacingStairs {get => _isFacingStairs; set => _isFacingStairs = value;}
     public bool IsGoingUp {get => _isGoingUp; set => _isGoingUp = value;}
-    public CharacterState CharacterState {get => _characterState ; set => _characterState = value; }
-
     public UnityEvent OnMapDeviceEvent, OnPlayerControlEvent;
 
     void Start()
     {
-        _animator = GetComponent<Animator>();
-        _rb = GetComponent<Rigidbody>();
         InitializeComponents();
         LockCursor();
     }
@@ -143,7 +134,6 @@ public class CharacterController : MonoBehaviour
 
     private void PlayerInteract(Transform view)
     {
-        _cinemachineManager.SetCameraTarget(view);
         UnlockCursor();
         _characterState = CharacterState.OnMapDevice;
     }
@@ -166,12 +156,8 @@ public class CharacterController : MonoBehaviour
 
     private void InitializeComponents()
     {
-        if(GameManager.instance.GetScene() != GameScene.Home)
-        {
-            return;
-        }
-        _hologramView = GameObject.FindGameObjectWithTag("HologramView").transform;
-        _cinemachineManager = GameObject.FindGameObjectWithTag("CinemachineCamera").GetComponent<CinemachineManager>();
+        _animator = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void LockCursor()
@@ -375,9 +361,9 @@ public class CharacterController : MonoBehaviour
             _interactableObject.ActivateObject(false);
             _interactableObject.ActivateCanvas(false);
             _interactableObject = null;
-            _cinemachineManager.SetCameraTarget(this.transform);
             RenderSettings.reflectionIntensity = 1f;
             LockCursor();
+            OnPlayerControl();
         }
     }
 }

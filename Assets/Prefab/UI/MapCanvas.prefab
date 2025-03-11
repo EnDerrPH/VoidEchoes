@@ -246,7 +246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 286.66333, y: 156.27713}
+  m_AnchoredPosition: {x: 239.3, y: 149.3}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2414550279899162030
@@ -366,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -288.92084, y: 84.046906}
+  m_AnchoredPosition: {x: -242.32, y: 92}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5673472482232237922
@@ -464,7 +464,6 @@ GameObject:
   - component: {fileID: 4087983278607600208}
   - component: {fileID: 898124058166480250}
   - component: {fileID: 1537528962638607238}
-  - component: {fileID: 4755811983887775741}
   m_Layer: 5
   m_Name: MapCanvas
   m_TagString: Untagged
@@ -571,22 +570,6 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &4755811983887775741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7192678115615418527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dad9d58536ea8f4e944ca40f54be6e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _characterController: {fileID: 0}
-  canvasGroup: {fileID: 1537528962638607238}
-  elapsedTime: 0
-  isFading: 0
 --- !u!1 &7538851232199999497
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +606,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 121.3421}
-  m_SizeDelta: {x: 851.1, y: 226}
+  m_SizeDelta: {x: 400, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1807829208386708597
 CanvasRenderer:
