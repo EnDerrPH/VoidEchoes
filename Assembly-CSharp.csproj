@@ -93,7 +93,6 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuPositionSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\ThemeEditor\ThemedUIElement.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuAudioSettingsHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\UIBaseScript.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuCloseFunctionalitySettingsHandler.cs" />
     <Compile Include="Assets\Scripts\LoadingSceneManager.cs" />
     <Compile Include="Assets\Scripts\InteractableScripts\ProjectorDeviceManager.cs" />
@@ -113,11 +112,11 @@
     <Compile Include="Assets\Scripts\CinemachineManager.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\UtilitiesSO.cs" />
     <Compile Include="Assets\Scripts\ReflectionHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\CharacterSelectionHandler.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\CustomShapeButton.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemsCreator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\CustomAttributes\OnValueChangeAttribute\OnValueChangeAttribute.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\CharacterSceneHandler.cs" />
     <Compile Include="Assets\Scripts\InteractableScripts\InteractableHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\PieMenuSharedLifecycleHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconCreator.cs" />
@@ -162,6 +161,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\New Input System\PieMenuControls.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuBackgroundSettingsHandler.cs" />
     <Compile Include="Assets\Scripts\CameraMiniMapHandler.cs" />
+    <Compile Include="Assets\Scripts\BaseScriptHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\PieMenuDisplayer.cs" />
     <Compile Include="Assets\Imported Assets\Sci-Fi UI\Demo_Assets\scripts\GUI_Demo.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuGeneralSettings.cs" />

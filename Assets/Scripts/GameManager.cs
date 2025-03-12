@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] MapList _mapList;
     [SerializeField] CharacterData _characterData;
     [SerializeField] MapsSO _map;
+    [SerializeField] AudioManager _audioManager;
+    [SerializeField] LoadingSceneManager _loadingSceneManager;
 
     public static GameManager instance;
 
@@ -33,17 +35,28 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
     }
 
-    void Start()
+    private void OnEnable()
     {
         _scene = GameScene.MainMenu;
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
+    private void OnDisable()
     {
-        OnChangeSceneEvent.Invoke();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+       OnChangeSceneEvent.Invoke();
+    }
+
+    private void Start()
+    {
+        OnChangeSceneEvent.AddListener(() => _audioManager.SetBGM(_scene));
     }
 
     public UtilitiesSO GetUtilities()
@@ -66,13 +79,23 @@ public class GameManager : MonoBehaviour
         return _characterData;
     }
 
+    public AudioManager GetAudioManager()
+    {
+        return _audioManager;
+    }
+
+    public LoadingSceneManager GetLoadingSceneManager()
+    {
+        return _loadingSceneManager;
+    }
+
 
     public CharacterDataList GetCharacterDataList()
     {
         return _characterDataList;
     }
 
-      public MapList GetMapList()
+    public MapList GetMapList()
     {
         return _mapList;
     }

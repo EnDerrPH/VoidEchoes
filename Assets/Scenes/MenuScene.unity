@@ -919,7 +919,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c945c783df4373c46b080c9b10ccce21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingSceneManager: {fileID: 0}
   _hyperDrive: {fileID: 1699037345}
 --- !u!224 &787577049 stripped
 RectTransform:
@@ -1650,9 +1649,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 3360305470d12904ba77627cae1c7cac, type: 2}
     - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
+      propertyPath: _audioManager
+      value: 
+      objectReference: {fileID: 2085483629}
+    - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
       propertyPath: _characterDataList
       value: 
       objectReference: {fileID: 11400000, guid: 07058f7dcdb41e646889db10dc2302c2, type: 2}
+    - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
+      propertyPath: _loadingSceneManager
+      value: 
+      objectReference: {fileID: 499257455}
     - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
       propertyPath: _characterDataList.Array.size
       value: 3
@@ -2114,7 +2121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9888082850cb2564088facf378dca061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingSceneManager: {fileID: 0}
   _playButton: {fileID: 787577052}
   _loadButton: {fileID: 806560310}
   _settingsButton: {fileID: 604564569}
@@ -2263,7 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5623c64ff84842c428cb521ee6a8a556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingSceneManager: {fileID: 0}
+  _audioSource: {fileID: 1111415301}
 --- !u!1 &1733946382830637
 GameObject:
   m_ObjectHideFlags: 0

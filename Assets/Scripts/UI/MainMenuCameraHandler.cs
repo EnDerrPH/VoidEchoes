@@ -1,21 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MainMenuCameraHandler : UIBaseScript
+public class MainMenuCameraHandler : BaseScriptHandler
 {
     [SerializeField] GameObject _hyperDrive;
 
     public void OnCameraMovement()
     {
-        _audioSource.volume = 1f;
-        PlayButtonSound(GameManager.instance.GetAudioClips().HyperDriveSFX , _audioSource);
+        _audioManager.GetAudioSource().volume = 1f;
+        _audioManager.PlayButtonSound(_gameManager.GetAudioClips().HyperDriveSFX , _audioManager.GetAudioSource());
         _hyperDrive.gameObject.SetActive(true);
     }
 
     void OnTriggerEnter(Collider other)
     {
         _loadingSceneManager.LoadScene("CharacterScene");
-        GameManager.instance.SetScene(GameScene.CharacterSelection);
+        _gameManager.SetScene(GameScene.CharacterSelection);
     }
     
 }

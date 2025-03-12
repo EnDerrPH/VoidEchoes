@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-public class UIGameHandler : UIBaseScript
+public class UIGameHandler : BaseScriptHandler
 {
     [Header("GameObjects")]
     [SerializeField] GameObject _miniMap;

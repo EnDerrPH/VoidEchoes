@@ -1,18 +1,18 @@
 using UnityEngine;
 
-public class AudioManager : UIBaseScript
+public class AudioManager : BaseScriptHandler
 {
-    AudioManager _instance;
-    AudioClipsSO _audioClipSO;
+    [SerializeField] AudioSource _audioSource;
+
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (_audioManager != null && _audioManager != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            _instance = this;
+            _audioManager = this;
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -20,11 +20,10 @@ public class AudioManager : UIBaseScript
     public override void Start()
     {
         base.Start();
-        _audioClipSO = GameManager.instance.GetAudioClips();
-        SetBGM(GameManager.instance.GetScene());
+        SetBGM(_gameManager.GetScene());
     }
 
-    private void SetBGM(GameScene scene)
+    public void SetBGM(GameScene scene)
     {
         switch(scene)
         {
@@ -47,8 +46,14 @@ public class AudioManager : UIBaseScript
         _audioSource.Play();
     }
 
-    public override void AddListener()
+    public AudioSource GetAudioSource()
     {
-        GameManager.instance.OnChangeSceneEvent.AddListener(() => { SetBGM(GameManager.instance.GetScene());});
+        return _audioSource;
+    }
+
+    public virtual void PlayButtonSound(AudioClip audioClip, AudioSource audioSource)
+    {
+        audioSource.volume = .2f;
+        audioSource.PlayOneShot(audioClip);
     }
 }

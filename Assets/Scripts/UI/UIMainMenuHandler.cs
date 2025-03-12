@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.Playables;
 
 
-public class UIMainMenuHandler : UIBaseScript
+public class UIMainMenuHandler : BaseScriptHandler
 {
     [SerializeField] Button _playButton;
     [SerializeField] Button _loadButton;
@@ -11,13 +11,6 @@ public class UIMainMenuHandler : UIBaseScript
     [SerializeField] Button _exitButton;
     [SerializeField] Button []_mainMenuButtons;
     [SerializeField] PlayableDirector _playerableDirector;
-    AudioClipsSO _audioClipSO;
-
-    public override void Start()
-    {
-        _audioClipSO = GameManager.instance.GetAudioClips();
-        base.Start();   
-    }
 
     public override void AddListener()
     {
@@ -28,7 +21,7 @@ public class UIMainMenuHandler : UIBaseScript
         _exitButton.onClick.AddListener(OnExit);
         foreach(Button button in _mainMenuButtons)
         {
-            button.onClick.AddListener(() => {PlayButtonSound(_audioClipSO.MainMenuButtonSFX, _audioSource); });
+            button.onClick.AddListener(() => {_audioManager.PlayButtonSound(_audioClipSO.MainMenuButtonSFX, _audioManager.GetAudioSource()); });
         }
     }
     

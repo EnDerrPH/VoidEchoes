@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameSceneHandler : MonoBehaviour
+public class GameSceneHandler : BaseScriptHandler
 {
    [SerializeField] Transform _terrainPos;
    [SerializeField] Transform _camera;
@@ -11,7 +11,7 @@ public class GameSceneHandler : MonoBehaviour
    const float _zPosOffset = -30f;
    const float _xRotOffset = 20f;
 
-   private void Start()
+   public override void InitializeComponents()
    {
         InitializeTerrain();
         InitializeShip();
@@ -20,7 +20,7 @@ public class GameSceneHandler : MonoBehaviour
 
     private void InitializeTerrain()
     {
-        Terrain terrain = GameManager.instance.GetMapSO().Map;
+        Terrain terrain = _gameManager.GetMapSO().Map;
         Terrain terrainObj = Instantiate(terrain, terrain.transform.position, terrain.transform.rotation , _terrainPos);
         terrainObj.gameObject.SetActive(true);
         _startPosition = terrainObj.GetComponent<MapHandler>().StartingPosition;
@@ -28,7 +28,7 @@ public class GameSceneHandler : MonoBehaviour
 
     private void InitializeShip()
     {
-        GameObject shipObject = Instantiate(GameManager.instance.GetCharacterData().Ship, _startPosition.position, _startPosition.rotation);
+        GameObject shipObject = Instantiate(_gameManager.GetCharacterData().Ship, _startPosition.position, _startPosition.rotation);
         _playerShip = shipObject;
     }
 

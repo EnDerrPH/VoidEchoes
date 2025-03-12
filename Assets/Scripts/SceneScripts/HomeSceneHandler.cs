@@ -3,9 +3,8 @@ using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 
-public class HomeSceneHandler : UIBaseScript
+public class HomeSceneHandler : BaseScriptHandler
 {
    [SerializeField] private Transform _playerPos;
    [SerializeField] private Transform _shipPos;
@@ -29,24 +28,6 @@ public class HomeSceneHandler : UIBaseScript
 
    public UnityEvent PlayerHasSpawnEvent;
 
-   void OnEnable()
-   {
-      SceneManager.sceneLoaded += OnSceneLoaded;
-   }
-
-   void OnDisable()
-   {
-      SceneManager.sceneLoaded -= OnSceneLoaded;
-   }
-
-   private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-   {
-      if (GameManager.instance != null)
-      {
-         InitializeHomeScene();
-      }
-   }
-
    void Update()
    {
       SetAlpha();
@@ -57,6 +38,14 @@ public class HomeSceneHandler : UIBaseScript
       _rightButton.onClick.AddListener(NextMap);
       _leftButton.onClick.AddListener(PreviousMap);
       _confirmButton.onClick.AddListener(SetTerrain);
+   }
+
+   public override void InitializeComponents()
+   {
+      InitializeCharacter();
+      InitializeShip();
+      InitializeMaps();
+      InitializeCinemachine();
    }
 
    private void NextMap()
@@ -83,17 +72,9 @@ public class HomeSceneHandler : UIBaseScript
       _mapName.text = _mapList[_currentMapNumber].MapName;
    }
 
-   private void InitializeHomeScene()
-   {
-      InitializeCharacter();
-      InitializeShip();
-      InitializeMaps();
-      InitializeCinemachine();
-   }
-
    private void InitializeCharacter()
    {
-      GameObject character = GameManager.instance.GetCharacterData().Character;
+      GameObject character = _gameManager.GetCharacterData().Character;
       GameObject characterObj = Instantiate(character, _playerPos.position, character.transform.rotation);
       _characterController = characterObj.GetComponent<CharacterController>();
       PlayerHasSpawnEvent.Invoke();
@@ -101,7 +82,7 @@ public class HomeSceneHandler : UIBaseScript
 
    private void InitializeShip()
    {
-      GameObject ship = GameManager.instance.GetCharacterData().Ship;
+      GameObject ship = _gameManager.GetCharacterData().Ship;
       GameObject shipObj = Instantiate(ship, _shipPos.position, ship.transform.rotation);
    }
 
@@ -114,7 +95,7 @@ public class HomeSceneHandler : UIBaseScript
 
    private void InitializeMaps()
    {
-      MapList mapList = GameManager.instance.GetMapList();
+      MapList mapList = _gameManager.GetMapList();
       for(int i = 0 ; i <= mapList.GetMapSOList().Count -1; i++)
       {
          MapsSO MapOBJ = mapList.GetMapSOList()[i];
@@ -132,9 +113,9 @@ public class HomeSceneHandler : UIBaseScript
 
    private void SetTerrain()
    {
-      GameManager.instance.SetMapSO(GameManager.instance.GetMapList().GetMapSOList()[_currentMapNumber]);
+      _gameManager.SetMapSO(_gameManager.GetMapList().GetMapSOList()[_currentMapNumber]);
       _loadingSceneManager.LoadScene("GameScene");
-      GameManager.instance.SetScene(GameScene.Game);
+      _gameManager.SetScene(GameScene.Game);
    }
 
    private void SetAlpha()
