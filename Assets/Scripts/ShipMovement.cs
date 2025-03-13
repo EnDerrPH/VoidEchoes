@@ -136,7 +136,8 @@ public class ShipMovement : MonoBehaviour
 
         float ClampedXPos = Mathf.Clamp(rawXPos, -_xClampRange , _xClampRange);
         float ClampedYPos = Mathf.Clamp(rawYPos, _minYClampRange, _maxYClampRange);
-        transform.localPosition = new Vector3(ClampedXPos, ClampedYPos, 0f);
+        Vector3 targetPosition = new Vector3(ClampedXPos, ClampedYPos, 0f);
+        transform.localPosition = Vector3.Lerp(transform.localPosition, targetPosition, Time.deltaTime * 5f);
 
         ShipRoll(_movement.x);
     }

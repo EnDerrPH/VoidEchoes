@@ -37,3 +37,13 @@ public enum CharacterState
     OnMapDevice,
     Default
 }
+
+public enum ShipState
+{
+    Initalize,
+    Maneuver,
+    MovingFoward,
+    ResetTransform,
+    Idle,
+    Default
+}

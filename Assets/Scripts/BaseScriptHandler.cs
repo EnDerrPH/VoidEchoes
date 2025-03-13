@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 public class BaseScriptHandler : MonoBehaviour
 {
-    //protected AudioSource _audioSource;
     protected GameManager _gameManager;
     protected AudioManager _audioManager;
     protected AudioClipsSO _audioClipSO;

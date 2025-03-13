@@ -1,10 +1,12 @@
-using System;
+using System.Collections;
 using UnityEngine;
 
 public class GameSceneHandler : BaseScriptHandler
 {
    [SerializeField] Transform _terrainPos;
    [SerializeField] Transform _camera;
+   [SerializeField] Transform _shipParentTransform;
+   [SerializeField] CinemachineManager _cinemachineManager;
    Transform _startPosition;
    GameObject _playerShip;
    const float _yPosOffset = 20f;
@@ -15,7 +17,8 @@ public class GameSceneHandler : BaseScriptHandler
    {
         InitializeTerrain();
         InitializeShip();
-        SetCamera();
+        _cinemachineManager.SetCameraTarget(_playerShip.transform);
+        StartCoroutine(enableShipScript());
    }
 
     private void InitializeTerrain()
@@ -28,14 +31,18 @@ public class GameSceneHandler : BaseScriptHandler
 
     private void InitializeShip()
     {
-        GameObject shipObject = Instantiate(_gameManager.GetCharacterData().Ship, _startPosition.position, _startPosition.rotation);
+        _shipParentTransform.position = _startPosition.position;
+        Vector3 playerShipPosition = new Vector3(_shipParentTransform.position.x , 1f , _shipParentTransform.position.z);
+        GameObject shipObject = Instantiate(_gameManager.GetCharacterData().Ship, playerShipPosition, _shipParentTransform.rotation);
         _playerShip = shipObject;
+        _playerShip.transform.SetParent(_shipParentTransform);
+        ShipController shipcontroller = _playerShip.GetComponent<ShipController>();
+        shipcontroller.ParentTransform = _shipParentTransform;
     }
 
-    private void SetCamera()
+    IEnumerator enableShipScript()
     {
-        _camera.position = new Vector3(_playerShip.transform.position.x, _playerShip.transform.position.y +  _yPosOffset, _playerShip.transform.position.z + _zPosOffset);
-        _camera.rotation = Quaternion.Euler(_xRotOffset, 0, 0);
-        _camera.SetParent(_playerShip.transform);
+        yield return new WaitForSeconds(1f);
+        _playerShip.GetComponent<ShipController>().enabled = true;
     }
 }

@@ -89,6 +89,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\MapsSO.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\FillAmountCalculator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemsRemover.cs" />
+    <Compile Include="Assets\Scripts\ShipController.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuPositionSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\ThemeEditor\ThemedUIElement.cs" />
@@ -183,7 +184,6 @@
     <Compile Include="Assets\Scripts\MapHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Calculators\MenuItemSpacingCalculator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuPreviewModeSettingsHandler.cs" />
-    <Compile Include="Assets\Scripts\UI\CameraHomeHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\Position Settings\PieMenuPositionSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\PieMenuSizeHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\PieMenuItem.cs" />

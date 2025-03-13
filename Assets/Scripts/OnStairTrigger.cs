@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class OnStairTrigger : MonoBehaviour
 {
-
     void OnTriggerEnter(Collider  collision)
     {
         if(collision.gameObject.tag == "Player")

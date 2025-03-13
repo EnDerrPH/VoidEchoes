@@ -37,7 +37,7 @@ public class HomeSceneHandler : BaseScriptHandler
    {
       _rightButton.onClick.AddListener(NextMap);
       _leftButton.onClick.AddListener(PreviousMap);
-      _confirmButton.onClick.AddListener(SetTerrain);
+      _confirmButton.onClick.AddListener(OnGameScene);
    }
 
    public override void InitializeComponents()
@@ -56,8 +56,7 @@ public class HomeSceneHandler : BaseScriptHandler
       {
          _currentMapNumber = 0;
       }
-      _terrainList[_currentMapNumber].gameObject.SetActive(true);
-      _mapName.text = _mapList[_currentMapNumber].MapName;
+      SetTerrain();
    }
 
    private void PreviousMap()
@@ -68,6 +67,11 @@ public class HomeSceneHandler : BaseScriptHandler
       {
          _currentMapNumber = _mapList.Count -1;
       }
+      SetTerrain();
+   }
+
+   private void SetTerrain()
+   {
       _terrainList[_currentMapNumber].gameObject.SetActive(true);
       _mapName.text = _mapList[_currentMapNumber].MapName;
    }
@@ -111,7 +115,7 @@ public class HomeSceneHandler : BaseScriptHandler
       }
    }
 
-   private void SetTerrain()
+   private void OnGameScene()
    {
       _gameManager.SetMapSO(_gameManager.GetMapList().GetMapSOList()[_currentMapNumber]);
       _loadingSceneManager.LoadScene("GameScene");
