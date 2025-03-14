@@ -3,39 +3,32 @@ using UnityEngine.InputSystem;
 
 public class ShipController : MonoBehaviour
 {
+    [SerializeField] ShipState _shipState = ShipState.Default;
     const float _moveSpeed = 50f;
     const float _returnSpeed = 1f;
     const float _maneuverSpeed = 30f;
-    const float _minYClampRange = -10f;
-    const float _maxYClampRange = 50f;
-    const float _turnSpeed = 1f;
+    const float _turnSpeed = 20f;
     const float _rollClampRange = 20f;
     const float _rollPower = 20f;
     const float _rollSpeed = 5f;
+    const float _maxUpwardPosition = 50f;
     Quaternion _originalRotation = Quaternion.Euler(0f,0f,0f);
     const float _originalYPos = 30f;
     const float _resetTimerLimit = 3f;
     Transform _parentTransform;
-    Vector3 _originPosition;
     float _resetShipTransformTimer = 0f;
     Vector2 _movement; 
-    bool _isDirectionalMovement;
     bool _isMovingForward;
-    bool _isTurningRight;
-    bool _isTurningLeft;
-    bool _isResetting = false;
     public Transform ParentTransform {get => _parentTransform; set => _parentTransform = value;}
-    [SerializeField] ShipState _shipState = ShipState.Default;
 
     void Start()
     {
         _shipState = ShipState.Initalize;
-        _isResetting = true;
     }
 
     private void Update()
     {
-        SetResetPositionTimer();
+        CheckShipMovement();
     }
 
     private void FixedUpdate()
@@ -46,13 +39,25 @@ public class ShipController : MonoBehaviour
 
     public void OnRightTurn(InputValue value)
     {
-        _isTurningRight = value.isPressed;
-        CheckShipMovement(value.isPressed);
+        if(value.isPressed)
+        {
+            _shipState = ShipState.TurnRight;
+        }
+        else
+        {
+            _shipState = _isMovingForward? ShipState.MovingFoward : ShipState.ResetTransform;
+        }
     }
     public void OnLeftTurn(InputValue value)
     {
-        _isTurningLeft = value.isPressed;
-        CheckShipMovement(value.isPressed);
+        if(value.isPressed)
+        {
+            _shipState = ShipState.TurnLeft;
+        }
+        else
+        {
+            _shipState = _isMovingForward? ShipState.MovingFoward : ShipState.ResetTransform;
+        }
     }
 
     public void OnMove(InputValue value)
@@ -62,42 +67,38 @@ public class ShipController : MonoBehaviour
 
     public void OnDirectionalMovement(InputValue value)
     {
-        _isDirectionalMovement = value.isPressed;
-        CheckShipMovement(value.isPressed);
+        if(value.isPressed)
+        {
+            _shipState = ShipState.Maneuver;
+        }
+        else
+        {
+            _shipState = _isMovingForward? ShipState.MovingFoward : ShipState.ResetTransform;
+        }
+
     }
 
     public void OnForwardMovement(InputValue value)
     {
         _isMovingForward = value.isPressed;
-        CheckShipMovement(value.isPressed);
+        _shipState = value.isPressed? ShipState.MovingFoward : ShipState.ResetTransform;
     }
 
-    private void CheckShipMovement(bool isPressed)
+    private void CheckShipMovement()
     {
-        if( _shipState == ShipState.Initalize)
+        switch (_shipState)
         {
-            return;
+            case ShipState.Initalize:
+                return;
+
+            case ShipState.Maneuver:
+            case ShipState.MovingFoward:
+                _resetShipTransformTimer = 0f;
+                break;
+            case ShipState.ResetTransform:
+                SetResetPositionTimer();
+                break;
         }
-        _shipState = isPressed? ShipState.Maneuver : ShipState.ResetTransform;
-        _isResetting = _shipState == ShipState.ResetTransform;
-        RestartOnShipReset(_isResetting);
-
-        if(_isMovingForward && !_isDirectionalMovement)
-        {
-            _shipState = ShipState.MovingFoward;
-            RestartOnShipReset(false);
-        }
-    }
-
-    private void RestartOnShipReset(bool isReset)
-    {
-        _isResetting = isReset;
-        _resetShipTransformTimer = 0f;
-    }
-
-    private void SetOriginalTransform()
-    {
-        _originalRotation = transform.rotation;
     }
 
     private void ShipMovement()
@@ -113,17 +114,25 @@ public class ShipController : MonoBehaviour
 
     private void OnShipManeuver()
     {
-        if(!_isDirectionalMovement)
+        if(_shipState != ShipState.Maneuver)
         {
             return;
         }
         float xOffset =  _movement.x * _maneuverSpeed * Time.deltaTime;
         float yOffset =  _movement.y * _maneuverSpeed * Time.deltaTime;
-        float rawXPos = transform.localPosition.x + xOffset;
-        float rawYPos = transform.localPosition.y + yOffset;
 
-        float ClampedYPos = Mathf.Clamp(rawYPos, _minYClampRange, _maxYClampRange);
-        transform.localPosition = new Vector3(rawXPos, ClampedYPos, 0f);
+        Vector3 horizontalMovement = transform.right  * xOffset;
+        horizontalMovement.y = 0f;
+        Vector3 verticalMovement = transform.up * yOffset;
+
+        float newYPosition = transform.position.y + verticalMovement.y;
+
+        if (newYPosition > _maxUpwardPosition)
+        {
+            verticalMovement.y = 0f;
+        }
+
+        transform.position += horizontalMovement + verticalMovement;
 
         ShipRoll(_movement.x);
     }
@@ -136,17 +145,17 @@ public class ShipController : MonoBehaviour
         }
         Vector3 forwardDirection = transform.forward; 
         float zOffset = _moveSpeed * Time.deltaTime;
-        _parentTransform.position += forwardDirection * zOffset; 
+        transform.position += forwardDirection * zOffset; 
     }
 
     private void ShipTurn()
     {
-        if(_isTurningRight)
+        if(_shipState == ShipState.TurnRight)
         {
             CalculateTurnOffset(1f);
         }
 
-        if(_isTurningLeft)
+        if(_shipState == ShipState.TurnLeft)
         {
            CalculateTurnOffset(-1f);
         }
@@ -154,9 +163,13 @@ public class ShipController : MonoBehaviour
 
     private void CalculateTurnOffset(float direction)
     {
-        Vector3 currentRotation = _parentTransform.rotation.eulerAngles;
-        currentRotation.y += _turnSpeed * direction;
-        _parentTransform.rotation = Quaternion.Euler(currentRotation);
+        transform.Rotate(direction * _turnSpeed * Time.deltaTime * Vector3.up);
+        float currentYRotation = transform.rotation.eulerAngles.y;
+
+        if (currentYRotation > 180f)
+        {
+            currentYRotation -= 360f;
+        }
         ShipRoll(direction);
     }
 
@@ -164,33 +177,33 @@ public class ShipController : MonoBehaviour
     {
         float rollPower = _rollPower * direction;
         rollPower = Mathf.Clamp(rollPower, -_rollClampRange, _rollClampRange);
-        Quaternion targetRotation = Quaternion.Euler(0f,0f, -rollPower);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, targetRotation, _rollSpeed * Time.deltaTime);
+        Quaternion targetRotation = Quaternion.Euler(0f,transform.rotation.eulerAngles.y, -rollPower);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rollSpeed * Time.deltaTime);
     }
 
     private void SetResetPositionTimer()
     {
-        if(_isResetting)
+        if(_shipState == ShipState.ResetTransform)
         {
             _resetShipTransformTimer += 1 * Time.deltaTime;
 
             if(_resetShipTransformTimer >= _resetTimerLimit)
             {
                 _shipState = ShipState.Idle;
-                RestartOnShipReset(false);
+                _resetShipTransformTimer = 0f;
             }
         }
     }
 
     private void ResetShipTransform()
     {
-        if(_shipState == ShipState.Idle || _shipState == ShipState.Maneuver)
+        if(_shipState == ShipState.Maneuver || _shipState == ShipState.Idle)
         {
             return;
         }
-        Vector3 newOriginalPosition = new Vector3(transform.localPosition.x , _originalYPos, transform.localPosition.z);
-        transform.localPosition = Vector3.Lerp(transform.localPosition, newOriginalPosition, _returnSpeed * Time.deltaTime);
-        Quaternion newRotation = Quaternion.Euler(_originalRotation.x, transform.localRotation.eulerAngles.y , _originalRotation.z);
-        transform.localRotation = Quaternion.Slerp(transform.localRotation, newRotation, _returnSpeed * Time.deltaTime);
+        Vector3 newOriginalPosition = new Vector3(transform.position.x , _originalYPos, transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, newOriginalPosition, _returnSpeed * Time.deltaTime);
+        Quaternion newRotation = Quaternion.Euler(_originalRotation.x, transform.rotation.eulerAngles.y , _originalRotation.z);
+        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, _returnSpeed * Time.deltaTime);
     }
 }

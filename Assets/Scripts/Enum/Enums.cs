@@ -44,6 +44,8 @@ public enum ShipState
     Maneuver,
     MovingFoward,
     ResetTransform,
+    TurnRight,
+    TurnLeft,
     Idle,
     Default
 }
