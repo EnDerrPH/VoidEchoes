@@ -258,7 +258,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 3
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1012,7 +1012,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1130,29 +1130,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 1
-          inSlope: -0.4114806
-          outSlope: -0.4114806
+          inSlope: 0
+          outSlope: 0
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
-          outWeight: 0.33333334
-        - serializedVersion: 3
-          time: 0.49465236
-          value: 0.79646015
-          inSlope: -0.004354328
-          outSlope: -0.004354328
-          tangentMode: 34
-          weightedMode: 0
-          inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0
         - serializedVersion: 3
           time: 1
           value: 1
-          inSlope: 0.40277195
-          outSlope: 0.40277195
+          inSlope: 0
+          outSlope: 0
           tangentMode: 34
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -4999,40 +4990,7 @@ MonoBehaviour:
   _damage: 0
   _particleType: 1
   _playerShip: {fileID: 0}
-  _animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 5.8601966
-      outSlope: 5.8601966
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.07272989
-    - serializedVersion: 3
-      time: 0.50535387
-      value: 0.98854166
-      inSlope: 0.026504967
-      outSlope: 0.026504967
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.79288256
-    - serializedVersion: 3
-      time: 1
-      value: 0.0047187805
-      inSlope: -3.208731
-      outSlope: -3.208731
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.09547025
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _speed: 5
+  _maxHeight: 0
 --- !u!1 &8251819795761665293
 GameObject:
   m_ObjectHideFlags: 0

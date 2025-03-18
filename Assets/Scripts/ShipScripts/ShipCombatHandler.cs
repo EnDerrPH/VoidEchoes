@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShipCombatHandler : BaseCombatHandler
+public class ShipCombatHandler : CombatManager
 {
     private void OnParticleCollision(GameObject other)
     {

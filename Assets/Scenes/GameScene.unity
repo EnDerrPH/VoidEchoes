@@ -1464,6 +1464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b01b90363e82c3a419cfed4b152fa122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gameScene: 3
   _terrainPos: {fileID: 129448033}
   _cinemachineManager: {fileID: 6894399015999228462}
   _targetObj: {fileID: 356508720}
@@ -2282,7 +2283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b93c3f0f08483b4d81b30d5781c0888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
 --- !u!114 &7283083377748110273
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,23 +3,27 @@ using UnityEngine.InputSystem;
 using System;
 using System.Collections.Generic;
 
-public class ShipAttackModeHandler : ShipBaseScript
+public class ShipAttackModeHandler : ShipManager
 {
+    [SerializeField] ShipMovementHandler _shipMovementHandler;
     [SerializeField] GameObject []_fireAmmos;
     [SerializeField] bool _isFiring;
     [SerializeField] ParticleSystem _fireAmmoVFX;
     List<AudioClip> _audioAttackList = new List<AudioClip>();
+    Coroutine _rotationCoroutine;
     GameObject _crosshair;
     GameObject _targetObj;
     AudioClip _currentAttackModeSpeechSFX;
     AudioClip _fireSFX;
+    const float _shipRotationSpeed = 40f;
     const float _targetDistance = 250f;
     Quaternion _rotationTarget;
     int _previousParticleCount = 0;
     bool _hasInitialized;
-    public static event Action OnAttackModeEvent;
     public GameObject []FireAmmos {get => _fireAmmos; set => _fireAmmos = value;}
     public List<AudioClip> AudioAttackList {get => _audioAttackList; set => _audioAttackList = value;}
+
+    public static event Action OnAttackModeEvent;
 
     private void OnEnable()
     {
@@ -61,6 +65,7 @@ public class ShipAttackModeHandler : ShipBaseScript
             return;
         }
         _shipState = _shipState == ShipState.AttackMode? ShipState.Idle : ShipState.AttackMode;
+        _shipMovementHandler.OnStopMovementSFX();
         OnAttackModeEvent?.Invoke();
         SetAttackModeSFX();
 
@@ -94,7 +99,6 @@ public class ShipAttackModeHandler : ShipBaseScript
         }
     }
 
-    
     private void OnTarget(bool isTarget)
     {
         _crosshair.SetActive(isTarget);
@@ -126,9 +130,21 @@ public class ShipAttackModeHandler : ShipBaseScript
         }
         Vector3 targetPointPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _targetDistance);
         _targetObj.transform.position = Camera.main.ScreenToWorldPoint(targetPointPosition);
+        SetShipRotation();
    }
 
-   private void AimTarget()
+   private void SetShipRotation()
+   {
+        if(_shipMovementHandler.ShipState ==  ShipState.Maneuver)
+        {
+            return;
+        }
+        Vector3 direction = _targetObj.transform.position - transform.position;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _shipRotationSpeed * Time.deltaTime);
+   }
+
+   private void SetBeamRotation()
    {
         foreach(GameObject fireAmmo in _fireAmmos)
         {
@@ -150,7 +166,7 @@ public class ShipAttackModeHandler : ShipBaseScript
         {
             return;
         }
-        AimTarget();
+        SetBeamRotation();
         SetEmissionModule(_isFiring);
         OnFireSFX();
    }

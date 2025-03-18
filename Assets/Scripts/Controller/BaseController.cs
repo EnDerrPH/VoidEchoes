@@ -9,6 +9,7 @@ public class BaseController : MonoBehaviour
     public virtual void Start()
     {
         InitializeComponents();
+        Physics.SyncTransforms();
     }
 
     public virtual void InitializeComponents()

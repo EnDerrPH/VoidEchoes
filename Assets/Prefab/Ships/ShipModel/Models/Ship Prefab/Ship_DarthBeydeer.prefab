@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.131776
+      value: -5.7656403
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.411719
+      value: 7.7382245
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.541105
+      value: 6.7863345
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -85,11 +85,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.996601
+      value: 5.611156
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.411719
+      value: 7.660138
       objectReference: {fileID: 0}
     - target: {fileID: 4186482963117794333, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipState: 2
+  _shipAttackModeHandler: {fileID: 7836810397321468283}
 --- !u!114 &7836810397321468283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipState: 6
+  _shipMovementHandler: {fileID: 8553497834021609735}
   _fireAmmos:
   - {fileID: 8478678457778563652}
   - {fileID: 559554229638584155}

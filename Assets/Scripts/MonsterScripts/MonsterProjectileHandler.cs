@@ -1,24 +1,20 @@
 using System;
 using UnityEngine;
 
-public class MonsterProjectileHandler : BaseWeaponScript
+public class MonsterProjectileHandler : WeaponManager
 {
     [SerializeField] Transform _playerShip;
-    [SerializeField] private AnimationCurve _animationCurve;  // Animation curve for the arc
     Vector3 _startPosition;
     Vector3 _targetPosition;
     float _elapsedTime = 0f;
     float travelDuration = 1f;
-    float _maxHeight;
-    private Vector3 _lastPosition;
-    [SerializeField] float t;
-    [SerializeField] float _speed;
+    const float _maxHeight = 50f;
+    float t;
 
     public Transform PlayerShip {get => _playerShip; set => _playerShip = value;}
     private void OnEnable()
     {
         _targetPosition = _playerShip.position;
-        _maxHeight = _targetPosition.y + 15f;
     }
 
     private void Start()
@@ -34,31 +30,19 @@ public class MonsterProjectileHandler : BaseWeaponScript
     {
         if (_playerShip == null || !gameObject.activeSelf) return;
 
-
-        _elapsedTime += Time.deltaTime; 
+        _elapsedTime += Time.deltaTime;
         float t = Mathf.Clamp01(_elapsedTime / travelDuration); // Normalize time
 
-        // Interpolate movement
+        // Move along the XZ plane
         Vector3 pos = Vector3.Lerp(_startPosition, _targetPosition, t);
-        pos.y += _animationCurve.Evaluate(t) * _maxHeight; // Apply arc
 
-        Vector3 velocity = (pos - transform.position) / Time.deltaTime;
+        // Apply height using a sine wave
+        float height = Mathf.Sin(t * Mathf.PI) * _maxHeight; // Peak at t = 0.5
+        pos.y = Mathf.Lerp(_startPosition.y, _targetPosition.y, t) + height;
+
         transform.position = pos;
 
-        // Smooth rotation towards movement direction
-        Vector3 direction = (pos - _lastPosition).normalized;
-        if (velocity != Vector3.zero) 
-        {
-        Quaternion targetRotation = Quaternion.LookRotation(velocity);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _speed);
-        }
-
-        _lastPosition = pos;
-
-        if (t >= 1f)
-        {
-            ResetProjectile();
-        }
+        if (t >= 1f) ResetProjectile();
     }
 
     private void ResetProjectile()

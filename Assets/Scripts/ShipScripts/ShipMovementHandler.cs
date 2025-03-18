@@ -3,8 +3,9 @@ using UnityEngine.InputSystem;
 using System;
 
 
-public class ShipMovementHandler : ShipBaseScript
+public class ShipMovementHandler : ShipManager
 {
+    [SerializeField] ShipAttackModeHandler _shipAttackModeHandler;
     const float _moveSpeed = 50f;
     const float _returnSpeed = 1f;
     const float _maneuverSpeed = 30f;
@@ -96,7 +97,10 @@ public class ShipMovementHandler : ShipBaseScript
 
         if(!_isMovingForward)
         {
-            _audioManager.GetAudioSFX().Stop();
+            if(_shipAttackModeHandler.ShipState == ShipState.AttackMode)
+            {
+                return;
+            }
             OnStopMovementSFX();
         }
     }
@@ -158,7 +162,7 @@ public class ShipMovementHandler : ShipBaseScript
         {
             verticalMovement.y = 0f;
         }
-
+        //transform.position = Vector3.Lerp(transform.position, transform.position + horizontalMovement + verticalMovement, Time.deltaTime * _moveSpeed);
         transform.position += horizontalMovement + verticalMovement;
 
         ShipRoll(_movement.x);
@@ -166,7 +170,7 @@ public class ShipMovementHandler : ShipBaseScript
 
     private void MoveFoward()
     {
-        if(!_isMovingForward)
+        if(!_isMovingForward || _shipAttackModeHandler.ShipState == ShipState.AttackMode)
         {
             return;
         }
@@ -188,6 +192,10 @@ public class ShipMovementHandler : ShipBaseScript
 
     private void ShipTurn()
     {
+        if(_shipAttackModeHandler.ShipState == ShipState.AttackMode)
+        {
+            return;
+        }
         if(_shipState == ShipState.TurnRight)
         {
             CalculateTurnOffset(1f);
@@ -235,7 +243,7 @@ public class ShipMovementHandler : ShipBaseScript
 
     private void ResetShipTransform()
     {
-        if(_shipState == ShipState.Maneuver || _shipState == ShipState.Idle)
+        if(_shipState == ShipState.Maneuver || _shipState == ShipState.Idle || _shipAttackModeHandler.ShipState == ShipState.AttackMode)
         {
             return;
         }
@@ -274,8 +282,9 @@ public class ShipMovementHandler : ShipBaseScript
         transform.position = Vector3.Lerp(transform.position, newOriginalPosition, _returnSpeed * Time.deltaTime);
     }
 
-    private void OnStopMovementSFX()
+    public void OnStopMovementSFX()
     {
+        _audioManager.GetAudioSFX().Stop();
         _audioManager.PlayOneShot(_stopMovementSFX , _audioManager.GetAudioSFX() , .5f , 1f);
     }
 }

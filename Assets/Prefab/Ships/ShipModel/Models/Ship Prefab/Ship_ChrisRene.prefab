@@ -115,6 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipState: 2
+  _shipAttackModeHandler: {fileID: 4751630911832518960}
 --- !u!114 &5668119170100462658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipState: 6
+  _shipMovementHandler: {fileID: 3105657439973125348}
   _fireAmmos:
   - {fileID: 7078008883708332716}
   - {fileID: 5778758586307653394}
@@ -197,6 +199,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 0
+  OnDeathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHitEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &1808966634560060742
 Rigidbody:
   m_ObjectHideFlags: 0

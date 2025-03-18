@@ -47,5 +47,26 @@ public class LoadingSceneManager : MonoBehaviour
 
         // Don't allow the scene to activate until it's fully loaded
         asyncOperation.allowSceneActivation = false;
+        SetScene(sceneName);
+    }
+
+    private void SetScene(string sceneName)
+    {
+        GameManager _gameManager = GameManager.instance;
+        switch(sceneName)
+        {
+            case "MenuScene":
+            _gameManager.SetScene(GameScene.MainMenu);
+            break;
+            case "CharacterScene":
+            _gameManager.SetScene(GameScene.CharacterSelection);
+            break;
+            case "Home":
+            _gameManager.SetScene(GameScene.Home);
+            break;
+            case "GameScene":
+            _gameManager.SetScene(GameScene.Game);
+            break;
+        }
     }
 }

@@ -1173,7 +1173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hyperDrive: {fileID: 1699037345}
   _nextSceneObj: {fileID: 4643522755916435}
-  _uiMainMenuHandler: {fileID: 1922959349}
+  _mainMenuHandler: {fileID: 1922959349}
   _speed: 1
 --- !u!224 &787577049 stripped
 RectTransform:
@@ -1695,7 +1695,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 469762047
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1811,6 +1811,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
+      propertyPath: _scene
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1547132754115709431, guid: de789627f57cc9b459fee02a86bfdfe9, type: 3}
       propertyPath: _mapList
       value: 

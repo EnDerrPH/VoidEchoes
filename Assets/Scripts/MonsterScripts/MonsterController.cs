@@ -9,7 +9,6 @@ public class MonsterController : BaseController
     [SerializeField] GameObject _weapon;
     [SerializeField] MonsterCombatHandler _monsterCombatHandler;
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] float _chaseRangeDistance;
     [SerializeField] float _attackingDistance;
     MonsterData _monsterData;
     string _onAlert = "OnAlert";
@@ -73,21 +72,16 @@ public class MonsterController : BaseController
         {
             return;
         }
-        Debug.Log("checking Path");
         CheckPath();
         float distance = Vector3.Distance(_playerShip.position, transform.position);
 
-        if (distance < _attackingDistance)
+        if (distance <= _attackingDistance)
         {
             _currentState = MonsterState.Attacking;
         }
-        else if (distance < _chaseRangeDistance)
-        {
-            _currentState = MonsterState.Chasing;
-        }
         else
         {
-            _currentState = MonsterState.Alert;
+            _currentState = MonsterState.Chasing;
         }
     }
 
@@ -106,9 +100,8 @@ public class MonsterController : BaseController
             case MonsterState.Chasing:
                 OnChase();
                 break;
-
             case MonsterState.Alert:
-                OnAlert();
+                PlayAnimation(_onAlert);
                 break;
         }
     }
@@ -117,12 +110,6 @@ public class MonsterController : BaseController
     {
         PlayAnimation(_onDeath);
         _currentState = MonsterState.OnDeath;
-    }
-
-    private void OnAlert()
-    {
-        PlayAnimation(_onAlert);
-        RotateTowardsPlayer();
     }
 
     private void MoveTowardsPlayer()

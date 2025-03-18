@@ -4,12 +4,10 @@ using UnityEngine;
 public class CameraShake : MonoBehaviour
 {
     public static CameraShake Instance;
-
-    private float _shakeDuration = 0f;
     bool _isShaking;
     float _shakeTimer;
-    [SerializeField] float _speed = 1f;
-    float _shakeTimerLimit = 1f;
+    const float _speed = 1f;
+    const float _shakeTimerLimit = 1f;
     CinemachineBasicMultiChannelPerlin _noise;
 
     void Awake()

@@ -377,13 +377,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3848f63605bee74282693b5dea7f58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadingSceneManager: {fileID: 0}
+  _gameScene: 1
   _characterButtonContent: {fileID: 1825254860}
   _characterContent: {fileID: 1837380829}
   _shipContent: {fileID: 262906090}
   _characterNameText: {fileID: 1349083711}
   _characterPrefab: {fileID: 4282969088379985560, guid: f8d60089533bc9d4e9b5cdd762fd9c04, type: 3}
   _startGameButton: {fileID: 1217990279}
+  _characterList: []
 --- !u!1 &637099955
 GameObject:
   m_ObjectHideFlags: 0
@@ -751,7 +752,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1217990280}
   m_OnClick:
     m_PersistentCalls:

@@ -288,6 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipState: 2
+  _shipAttackModeHandler: {fileID: 7083738250755383560}
 --- !u!114 &7083738250755383560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -301,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _shipState: 6
+  _shipMovementHandler: {fileID: 960700838516519806}
   _fireAmmos:
   - {fileID: 6241356574405409324}
   - {fileID: 7240329482457847742}

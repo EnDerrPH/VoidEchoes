@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MonsterCombatHandler : BaseCombatHandler
+public class MonsterCombatHandler : CombatManager
 {
     [SerializeField] MonsterController _monsterController;
 
@@ -10,9 +10,9 @@ public class MonsterCombatHandler : BaseCombatHandler
         {
             return;
         }
-        if (other.GetComponent<BaseWeaponScript>().ParticleType == ParticleType.Player)
+        if (other.GetComponent<WeaponManager>().ParticleType == ParticleType.Player)
         {
-            OnHit(other.GetComponent<BaseWeaponScript>().Damage); 
+            OnHit(other.GetComponent<WeaponManager>().Damage); 
         }
     }
 }

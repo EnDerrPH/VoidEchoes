@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class GameSceneHandler : BaseScriptHandler
+public class GameSceneHandler : InitializeManager
 {
    [SerializeField] Transform _terrainPos;
    [SerializeField] CinemachineManager _cinemachineManager;
    List<AudioClip> _audioAttackList = new List<AudioClip>();
    [SerializeField] GameObject _targetObj;
    [SerializeField] GameObject _crosshair;
+   ShipCombatHandler _shipCombatHandler;
    MapHandler _mapHandler;
    MapData _mapData;
    AudioClip _currentAttackModeSpeechSFX;
@@ -65,13 +66,15 @@ public class GameSceneHandler : BaseScriptHandler
         Vector3 playerShipPosition = new Vector3(_startPosition.position.x , 1f , _startPosition.position.z);
         GameObject shipObject = Instantiate(_gameManager.GetCharacterData().Ship, playerShipPosition, _startPosition.rotation);
         _playerShip = shipObject;
-        ShipCombatHandler shipCombatHandler = _playerShip.GetComponent<ShipCombatHandler>();
+        _shipCombatHandler = _playerShip.GetComponent<ShipCombatHandler>();
         foreach(GameObject fireAmmo in _playerShip.GetComponent<ShipAttackModeHandler>().FireAmmos)
         {
-            BaseWeaponScript weapon = fireAmmo.GetComponent<BaseWeaponScript>();
+            WeaponManager weapon = fireAmmo.GetComponent<WeaponManager>();
             weapon.Damage = _gameManager.GetCharacterData().ShipDamage;
         }
-        shipCombatHandler.Health = _gameManager.GetCharacterData().ShipHealth;
+        _shipCombatHandler.Health = _gameManager.GetCharacterData().ShipHealth;
+        //ShipDead will change soon
+        _shipCombatHandler.OnDeathEvent.AddListener(() => _loadingSceneManager.LoadScene("Home"));
     }
 
     IEnumerator InitializeShipScripts()

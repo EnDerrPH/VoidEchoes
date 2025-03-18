@@ -7,8 +7,6 @@ public class CharacterController : BaseController
     
     [SerializeField] float _moveSpeed;
     [SerializeField] float _mouseSensitivity;
-    [SerializeField] bool _isFacingStairs;
-    [SerializeField] bool _isGoingUp;
     [SerializeField] float _stairUpSpeed;
     [SerializeField] float _stairDownSpeed;
     [SerializeField] float _startSmoothSpeed;
@@ -18,6 +16,8 @@ public class CharacterController : BaseController
     [SerializeField] Vector2 _movement;
     Transform _hologramView;
     InteractableHandler _interactableObject;
+    [SerializeField] bool _isFacingStairs;
+    [SerializeField] bool _isGoingUp;
     string _idle = "Idle";
     string _walkForward = "Walk Forward";
     string _walkBackward = "Walk Backward";
@@ -320,6 +320,13 @@ public class CharacterController : BaseController
         // _isStairs = false;
     }  
 
+    private void OnStep(GameObject gameObject)
+    {
+        float scaleY =  gameObject.transform.localScale.y + _stairOffset;
+        Vector3 targetPosition = new Vector3(transform.position.x,transform.position.y + scaleY , transform.position.z + .5f);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, _startSmoothSpeed * Time.deltaTime);
+    }
+
     void OnCollisionStay(Collision collision)
     {
         if(GameManager.instance.GetScene() != GameScene.Home)
@@ -328,10 +335,7 @@ public class CharacterController : BaseController
         }
         if(collision.gameObject.CompareTag("Stairs") && _isFacingStairs)
         {
-            float scaleY =  collision.gameObject.transform.localScale.y + _stairOffset;
-            Vector3 targetPosition = new Vector3(transform.position.x,transform.position.y + scaleY , transform.position.z + .5f);
-            float smoothSpeed = _startSmoothSpeed;
-            transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);
+            OnStep(collision.gameObject);
         }
 
         if(collision.gameObject.CompareTag("Interactable"))

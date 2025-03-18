@@ -1,8 +1,7 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -23,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-
         if (instance != null && instance != this)
         {
             // Destroy this object because it is a duplicate
@@ -34,7 +32,6 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        
     }
 
     private void OnEnable()
@@ -118,4 +115,6 @@ public class GameManager : MonoBehaviour
     {
         _mapData = mapData;
     }
+
+
 }

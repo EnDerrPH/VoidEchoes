@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : BaseScriptHandler
+public class AudioManager : InitializeManager
 {
     [SerializeField] AudioSource _audioSource;
     [SerializeField] AudioSource _audioSFX;
@@ -21,9 +21,14 @@ public class AudioManager : BaseScriptHandler
         }
     }
 
+    public override void InitializeComponents()
+    {
+        base.InitializeComponents();
+        SetBGM(_gameManager.GetScene());
+    }
+
     public override void Start()
     {
-        base.Start();
         SetBGM(_gameManager.GetScene());
     }
 
