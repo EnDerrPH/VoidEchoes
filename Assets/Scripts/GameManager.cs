@@ -8,13 +8,12 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerData _playerData;
     [SerializeField] GameScene _scene;
-    [SerializeField] UtilitiesSO _utilities;
-    [SerializeField] AudioClipsSO _audioClipsSO;
+    [SerializeField] AudioClipData _audioClipData;
     [SerializeField] CharacterDataList _characterDataList;
     [SerializeField] PlanetList _planetList;
     [SerializeField] MapList _mapList;
     [SerializeField] CharacterData _characterData;
-    [SerializeField] MapsSO _map;
+    [SerializeField] MapData _mapData;
     [SerializeField] AudioManager _audioManager;
     [SerializeField] LoadingSceneManager _loadingSceneManager;
 
@@ -59,19 +58,14 @@ public class GameManager : MonoBehaviour
         OnChangeSceneEvent.AddListener(() => _audioManager.SetBGM(_scene));
     }
 
-    public UtilitiesSO GetUtilities()
-    {
-        return _utilities;
-    }
-
     public GameScene GetScene()
     {
         return _scene;
     }
 
-    public AudioClipsSO GetAudioClips()
+    public AudioClipData GetAudioClipData()
     {
-        return _audioClipsSO;
+        return _audioClipData;
     }
 
     public CharacterData GetCharacterData()
@@ -105,13 +99,10 @@ public class GameManager : MonoBehaviour
         return _playerData;
     }
 
-    public MapsSO GetMapSO()
+    public MapData GetMapData()
     {
-        return _map;
+        return _mapData;
     }
-
-
-
 
     public void SetScene(GameScene scene)
     {
@@ -123,8 +114,8 @@ public class GameManager : MonoBehaviour
         _characterData = characterData;
     }
 
-    public void SetMapSO(MapsSO mapSO)
+    public void SetMapSO(MapData mapData)
     {
-        _map = mapSO;
+        _mapData = mapData;
     }
 }

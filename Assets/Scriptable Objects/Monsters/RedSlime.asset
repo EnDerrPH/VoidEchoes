@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b8ce0f81bd71ec40af1b5dda1299665, type: 3}
+  m_Name: RedSlime
+  m_EditorClassIdentifier: 
+  _name: Red Slime
+  _monster: {fileID: 3280643651398337220, guid: 3fa282fd767ba5c469d87cf932931440, type: 3}
+  _weapon: {fileID: 262901563137538906, guid: ba1bfd69187d4124cab430b9cdb52d4e, type: 3}
+  _moveSpeed: 0.3
+  _monsterHealth: 100
+  _damage: 10
+  _onHitSFX: {fileID: 8300000, guid: 2de5c60453f726e48b329d993674ab2b, type: 3}
+  _onDeathSFX: {fileID: 8300000, guid: ca82df7fc608f204788e98f2ccd227c5, type: 3}
+  _onAttackSFX: {fileID: 8300000, guid: 0256862b54481af4099cbe2673e73e97, type: 3}
+  _onMoveSFX: {fileID: 8300000, guid: 2e7c920d4c4cb1149ae721f815c1a955, type: 3}

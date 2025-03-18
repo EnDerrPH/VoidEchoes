@@ -1,8 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : BaseScriptHandler
 {
     [SerializeField] AudioSource _audioSource;
+    [SerializeField] AudioSource _audioSFX;
+    [SerializeField] AudioSource _audioSpeech;
+    [SerializeField]  AudioMixer _audioMixer;
 
     private void Awake()
     {
@@ -28,21 +32,19 @@ public class AudioManager : BaseScriptHandler
         switch(scene)
         {
             case GameScene.MainMenu:
-            _audioSource.volume = .1f;
-            _audioSource.clip = _audioClipSO.MainMenuBGM;
+            _audioSource.clip = _audioClipData.MainMenuBGM;
             break;
             case GameScene.CharacterSelection:
-            _audioSource.volume = .1f;
-            _audioSource.clip = _audioClipSO.CharacterSelectionBGM;
+            _audioSource.clip = _audioClipData.CharacterSelectionBGM;
             break;
             case GameScene.Home:
-            _audioSource.volume = 1f;
-            _audioSource.clip = _audioClipSO.HomeBGM;
+            _audioSource.clip = _audioClipData.HomeBGM;
             break;
             case GameScene.Game:
-           // _audioSource.clip = _audioClipSO.MapBGM;
+           // _audioSource.clip = _audioClipData.MapBGM;
             break;
         }
+        _audioSource.volume = .5f;
         _audioSource.Play();
     }
 
@@ -51,9 +53,26 @@ public class AudioManager : BaseScriptHandler
         return _audioSource;
     }
 
-    public virtual void PlayButtonSound(AudioClip audioClip, AudioSource audioSource)
+    public AudioSource GetAudioSFX()
     {
-        audioSource.volume = .2f;
+        return _audioSFX;
+    }
+
+    public AudioSource GetAudioSpeech()
+    {
+        return _audioSpeech;
+    }
+
+    public virtual void PlayOneShot(AudioClip audioClip, AudioSource audioSource , float volume , float mixerVolume)
+    {
+        audioSource.volume = volume;
+        SetMixerVolume(mixerVolume);
         audioSource.PlayOneShot(audioClip);
+    }
+
+    private void SetMixerVolume(float multiplier)
+    {
+        float volume = Mathf.Log10(multiplier) * 20;
+        _audioMixer.SetFloat("SFXVolume", volume); 
     }
 }

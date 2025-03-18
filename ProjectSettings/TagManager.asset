@@ -8,6 +8,9 @@ TagManager:
   - TrackingObject
   - Ground
   - Stairs
+  - CinemachineCamera
+  - PlayerShip
+  - PlayerAmmo
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - groundLayer
   - stairsLayer
-  - 
+  - Monsters
   - 
   - 
   - 

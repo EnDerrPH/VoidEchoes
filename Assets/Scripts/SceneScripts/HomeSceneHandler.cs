@@ -14,7 +14,7 @@ public class HomeSceneHandler : BaseScriptHandler
    [SerializeField] private Button _leftButton;
    [SerializeField] private Button _confirmButton;
    [SerializeField] private GameObject _mapUI;
-   [SerializeField] private List<MapsSO> _mapList = new List<MapsSO>();
+   [SerializeField] private List<MapData> _mapList = new List<MapData>();
    [SerializeField] private List<Terrain> _terrainList = new List<Terrain>();
    [SerializeField] protected CharacterController _characterController;
    [SerializeField] CanvasGroup _canvasGroup;
@@ -102,13 +102,13 @@ public class HomeSceneHandler : BaseScriptHandler
       MapList mapList = _gameManager.GetMapList();
       for(int i = 0 ; i <= mapList.GetMapSOList().Count -1; i++)
       {
-         MapsSO MapOBJ = mapList.GetMapSOList()[i];
-         _mapList.Add(MapOBJ);
-         Terrain terrain = Instantiate(MapOBJ.Map, _mapParentTransform.position, _mapParentTransform.transform.rotation, _mapParentTransform);
+         MapData mapData = mapList.GetMapSOList()[i];
+         _mapList.Add(mapData);
+         Terrain terrain = Instantiate(mapData.Map, _mapParentTransform.position, _mapParentTransform.transform.rotation, _mapParentTransform);
          _terrainList.Add(terrain);
          if(i <= 0 )
          {
-            _mapName.text = MapOBJ.MapName;
+            _mapName.text = mapData.MapName;
             _currentMapNumber = i;
             terrain.gameObject.SetActive(true);
          }

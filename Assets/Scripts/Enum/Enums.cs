@@ -11,7 +11,8 @@ public enum GeyserPhase
 
 public enum ParticleType
 {
-    Ammo,
+    Player,
+    Monster,
     Trap,
     Default
 }
@@ -40,12 +41,23 @@ public enum CharacterState
 
 public enum ShipState
 {
-    Initalize,
     Maneuver,
     MovingFoward,
     ResetTransform,
     TurnRight,
     TurnLeft,
+    AttackMode,
     Idle,
+    Default
+}
+
+public enum MonsterState
+{
+    Alert,
+    Chasing,
+    Attacking,
+    Patrol,
+    OnHit,
+    OnDeath,
     Default
 }

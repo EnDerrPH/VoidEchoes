@@ -80,7 +80,8 @@ public class CharacterSceneHandler : BaseScriptHandler
             GameObject characterButtonObj = Instantiate(_characterPrefab, _characterButtonContent.position, _characterButtonContent.rotation, _characterButtonContent.transform);
             CharacterSelectionButtonHandler characterUI = characterButtonObj.GetComponent<CharacterSelectionButtonHandler>();
             characterUI.SetCharacterData(characterData.CharacterIcon , characterData);
-            GameObject shipObj = Instantiate(characterData.Ship, characterData.Ship.transform.position, characterData.Ship.transform.rotation, _shipContent.transform);
+            Vector3 shipPosition = new Vector3(characterData.StartingXPosition, 0f , characterData.StartingZPosition);
+            GameObject shipObj = Instantiate(characterData.Ship, shipPosition, characterData.Ship.transform.rotation, _shipContent.transform);
             shipObj.SetActive(false);
             GameObject characterObj = Instantiate(characterData.Character, characterData.Character.transform.position, characterData.Character.transform.rotation, _characterContent.transform);
             characterObj.SetActive(false);

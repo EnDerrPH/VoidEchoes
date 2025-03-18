@@ -4,9 +4,9 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "MapList", menuName = "Scriptable Objects/MapList")]
 public class MapList : ScriptableObject
 {
-    [SerializeField] List<MapsSO> _mapList = new List<MapsSO>();
+    [SerializeField] List<MapData> _mapList = new List<MapData>();
 
-    public List<MapsSO> GetMapSOList()
+    public List<MapData> GetMapSOList()
     {
         return _mapList;
     }

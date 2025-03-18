@@ -27,7 +27,6 @@ public class CharacterSelectionButtonHandler : BaseScriptHandler , IPointerClick
         _characterSelectionHandler.CharacterNameText.text = _characterData.CharacterName;
         _characterSelectionHandler.SelectedCharacterData = _characterData;
         _characterSelectionHandler.SetSelectedCharacter();
-        _audioManager.PlayButtonSound(_audioClipSO.MainMenuButtonSFX, _audioManager.GetAudioSource());
-        _audioManager.GetAudioSource().volume = .1f;
+        _audioManager.PlayOneShot(_audioClipData.MainMenuButtonSFX, _audioManager.GetAudioSource() , .5f , 1f);
     }
 }
