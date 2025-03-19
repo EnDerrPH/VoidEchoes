@@ -15,12 +15,14 @@ public class AudioClipData : ScriptableObject
     [Header ("Ship SFX")]
     [SerializeField] AudioClip _OnAttackModeSFX;
     [SerializeField] AudioClip _onFireSFX;
-    [SerializeField] AudioClip _OnMovemeFowardSFX;
-    [SerializeField] AudioClip _OnStopMovementSFX;
+    [SerializeField] AudioClip _onMovemeFowardSFX;
+    [SerializeField] AudioClip _onStopMovementSFX;
+    [SerializeField] AudioClip _onDeathSFX;
     public AudioClip MainMenuButtonSFX {get => _mainMenuButtonSFX;}
     public AudioClip OnAttackModeSFX {get => _OnAttackModeSFX;}
-    public AudioClip OnMoveForwardSFX {get => _OnMovemeFowardSFX;}
-    public AudioClip OnStopMovementSFX {get => _OnStopMovementSFX;}
+    public AudioClip OnMoveForwardSFX {get => _onMovemeFowardSFX;}
+    public AudioClip OnStopMovementSFX {get => _onStopMovementSFX;}
+    public AudioClip OnDeathSFX {get => _onDeathSFX;}
     public AudioClip OnFireSFX {get => _onFireSFX;}
     public AudioClip GroundStepSFX {get => _groundStepSFX;}
     public AudioClip StairStepSFX {get => _stairStepSFX;} 

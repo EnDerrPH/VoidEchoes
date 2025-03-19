@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class CombatManager : MonoBehaviour
+public class CombatManager : ShipManager
 {
     [SerializeField] protected int _health;
     public UnityEvent OnDeathEvent, OnHitEvent;
@@ -16,11 +16,16 @@ public class CombatManager : MonoBehaviour
         OnDeath();
     }
 
-    private void OnDeath()
+    public void OnDeath()
     {
         if(_health <= 0)
         {
-            OnDeathEvent?.Invoke();
+            AfterDeath();
         }
+    }
+
+    public virtual void AfterDeath()
+    {
+        OnDeathEvent?.Invoke();
     }
 }

@@ -1,13 +1,14 @@
 using UnityEngine;
 
-public class ProjectorDeviceManager : InteractableHandler
-{
-   [SerializeField] Transform _topProjector;
-   [SerializeField] GameObject _hologram;
-   [Header("Top Projector")]
-   [SerializeField] float _minY;
-   [SerializeField] float _maxY;
-   [SerializeField] float _speed;
+public class MapDeviceHandler : ObjectManager
+    {
+    [SerializeField] Transform _topProjector;
+    [SerializeField] GameObject _hologram;
+    const float _minY = 0.09f;
+    const float _maxY = 1.75f;
+    const float _speed = 1.5f;
+    const float _offsetLimit = .01f;
+
     void Update()
     {
         OpenProjector();
@@ -23,7 +24,7 @@ public class ProjectorDeviceManager : InteractableHandler
         ActivateCanvas(false);
         _topProjector.localPosition = new Vector3(_topProjector.localPosition.x, Mathf.Lerp(_topProjector.localPosition.y, _maxY, Time.deltaTime * _speed), _topProjector.localPosition.z);
 
-        if(_topProjector.localPosition.y >= _maxY - .1)
+        if(_topProjector.localPosition.y >= _maxY - _offsetLimit)
         {
             _hologram.SetActive(true);
         }
@@ -31,7 +32,7 @@ public class ProjectorDeviceManager : InteractableHandler
 
     private void CloseProjector()
     {
-        if(_isOpen || _topProjector.localPosition.y <= _minY + .2)
+        if(_isOpen || _topProjector.localPosition.y <= _minY + _offsetLimit)
         {
             return;
         }

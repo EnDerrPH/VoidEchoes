@@ -7,15 +7,11 @@ public class CharacterController : BaseController
     
     [SerializeField] float _moveSpeed;
     [SerializeField] float _mouseSensitivity;
-    [SerializeField] float _stairUpSpeed;
-    [SerializeField] float _stairDownSpeed;
-    [SerializeField] float _startSmoothSpeed;
-    [SerializeField] float _stairOffset;
     [SerializeField] CharacterState _characterState;
     [SerializeField] bool _isMouseRotate; 
     [SerializeField] Vector2 _movement;
     Transform _hologramView;
-    InteractableHandler _interactableObject;
+    [SerializeField] ObjectManager _interactableObject;
     [SerializeField] bool _isFacingStairs;
     [SerializeField] bool _isGoingUp;
     string _idle = "Idle";
@@ -29,7 +25,10 @@ public class CharacterController : BaseController
     string _leftTurn = "Left Turn";
     float _previousYPosition;
     float _currentYPosition;
-    float _gravityMultiplier = 10f;
+    const float _stairUpSpeed = 25;
+    const float _stairDownSpeed = 10;
+    const float _stairSmoothSpeed = 1;
+    const float _gravityMultiplier = 10f;
     float _Ytimer = 0f;
     float _YcheckInterval = .2f;
     Vector3 _moveDirection;
@@ -117,7 +116,7 @@ public class CharacterController : BaseController
         }
         _interactableObject.ActivateObject(true);
 
-        if(_interactableObject.InteractableType == InteractableType.Projector)
+        if(_interactableObject.ObjectType == ObjectType.MapDevice)
         {
             PlayerInteract(_hologramView);
             RenderSettings.reflectionIntensity = 0f;
@@ -139,7 +138,7 @@ public class CharacterController : BaseController
     private void PlayerInteract(Transform view)
     {
         UnlockCursor();
-        _characterState = CharacterState.OnMapDevice;
+        _characterState = CharacterState.Interact;
     }
     private void StopMovement()
     {
@@ -320,34 +319,41 @@ public class CharacterController : BaseController
         // _isStairs = false;
     }  
 
-    private void OnStep(GameObject gameObject)
+    private void OnStep(float stepHeight , GameObject gameObject)
     {
-        float scaleY =  gameObject.transform.localScale.y + _stairOffset;
-        Vector3 targetPosition = new Vector3(transform.position.x,transform.position.y + scaleY , transform.position.z + .5f);
-        transform.position = Vector3.Lerp(transform.position, targetPosition, _startSmoothSpeed * Time.deltaTime);
+        Vector3 targetPosition = new Vector3(transform.position.x,transform.position.y + stepHeight , transform.position.z + .5f);
+        transform.position = Vector3.Lerp(transform.position, targetPosition, _stairSmoothSpeed * Time.deltaTime);
     }
 
     void OnCollisionStay(Collision collision)
     {
-        if(GameManager.instance.GetScene() != GameScene.Home)
+        ObjectManager objectManager = collision.gameObject.GetComponent<ObjectManager>();
+        if(objectManager == null)
         {
             return;
         }
-        if(collision.gameObject.CompareTag("Stairs") && _isFacingStairs)
+        if(objectManager.ObjectType == ObjectType.Step && _isFacingStairs)
         {
-            OnStep(collision.gameObject);
+            StepHandler stepObject = collision.gameObject.GetComponent<StepHandler>();
+            OnStep(stepObject.StepHeight, collision.gameObject);
         }
 
-        if(collision.gameObject.CompareTag("Interactable"))
+        if(objectManager.ObjectType == ObjectType.MapDevice)
         {
-            _interactableObject = collision.gameObject.GetComponent<InteractableHandler>();
-            _interactableObject.ActivateCanvas(true);
+            _interactableObject = objectManager;
+            objectManager.ActivateCanvas(true);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Interactable"))
+        ObjectManager objectManager = collision.gameObject.GetComponent<ObjectManager>();
+        if(objectManager == null)
+        {
+            return;
+        }
+        
+        if (objectManager.ObjectType == ObjectType.MapDevice)
         {
             _interactableObject.ActivateObject(false);
             _interactableObject.ActivateCanvas(false);

@@ -4,8 +4,6 @@ using UnityEngine.Audio;
 public class AudioManager : InitializeManager
 {
     [SerializeField] AudioSource _audioSource;
-    [SerializeField] AudioSource _audioSFX;
-    [SerializeField] AudioSource _audioSpeech;
     [SerializeField]  AudioMixer _audioMixer;
 
     private void Awake()
@@ -56,16 +54,6 @@ public class AudioManager : InitializeManager
     public AudioSource GetAudioSource()
     {
         return _audioSource;
-    }
-
-    public AudioSource GetAudioSFX()
-    {
-        return _audioSFX;
-    }
-
-    public AudioSource GetAudioSpeech()
-    {
-        return _audioSpeech;
     }
 
     public virtual void PlayOneShot(AudioClip audioClip, AudioSource audioSource , float volume , float mixerVolume)

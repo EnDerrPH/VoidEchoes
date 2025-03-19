@@ -73,8 +73,9 @@ public class GameSceneHandler : InitializeManager
             weapon.Damage = _gameManager.GetCharacterData().ShipDamage;
         }
         _shipCombatHandler.Health = _gameManager.GetCharacterData().ShipHealth;
-        //ShipDead will change soon
-        _shipCombatHandler.OnDeathEvent.AddListener(() => _loadingSceneManager.LoadScene("Home"));
+        _shipCombatHandler.SetDeathSFX(_audioClipData.OnDeathSFX);
+        _shipCombatHandler.enabled = true;
+
     }
 
     IEnumerator InitializeShipScripts()

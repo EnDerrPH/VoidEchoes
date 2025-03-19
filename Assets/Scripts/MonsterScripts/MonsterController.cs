@@ -17,10 +17,12 @@ public class MonsterController : BaseController
     string _onHit = "OnHit";
     string _onDeath = "OnDeath";
     string _onIdle = "OnIdle";
+    const float _rotationSpeed = 5f;
     float _onHitTimerLimit = 1f;
     float _onHitTimer = 0f;
     float _timerSpeed = 1f;
     bool _isHit;
+    Quaternion _targetRotation;
     public Transform PlayerShip {get => _playerShip ; set => _playerShip = value;}
     public float MoveSpeed {get => _moveSpeed ; set => _moveSpeed = value;}
     public GameObject Weapon {get => _weapon ; set => _weapon = value;}
@@ -125,10 +127,13 @@ public class MonsterController : BaseController
 
     private void RotateTowardsPlayer()
     {
-        float rotationSpeed = 5f;
+        if (Quaternion.Angle(transform.rotation, _targetRotation) < 1f)
+        {
+            return;
+        }
         Vector3 direction = _playerShip.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        _targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Lerp(transform.rotation, _targetRotation, Time.deltaTime * _rotationSpeed);
     }
 
     private void CheckPath()

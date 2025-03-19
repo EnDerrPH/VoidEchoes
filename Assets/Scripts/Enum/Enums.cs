@@ -26,16 +26,17 @@ public enum GameScene
     Default
 }
 
-public enum InteractableType
+public enum ObjectType
 {
-    Projector,
+    MapDevice,
+    Step,
     Default
 }
 
 public enum CharacterState
 {
     PlayerControl,
-    OnMapDevice,
+    Interact,
     Default
 }
 
@@ -48,6 +49,7 @@ public enum ShipState
     TurnLeft,
     AttackMode,
     Idle,
+    Death,
     Default
 }
 

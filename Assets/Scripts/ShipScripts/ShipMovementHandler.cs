@@ -45,6 +45,10 @@ public class ShipMovementHandler : ShipManager
 
     public void OnRightTurn(InputValue value)
     {
+        if(_shipState == ShipState.Death)
+        {
+            return;
+        }
         if(value.isPressed)
         {
             _shipState = ShipState.TurnRight;
@@ -56,6 +60,10 @@ public class ShipMovementHandler : ShipManager
     }
     public void OnLeftTurn(InputValue value)
     {
+        if(_shipState == ShipState.Death)
+        {
+            return;
+        }
         if(value.isPressed)
         {
             _shipState = ShipState.TurnLeft;
@@ -68,11 +76,19 @@ public class ShipMovementHandler : ShipManager
 
     public void OnMove(InputValue value)
     {
+        if(_shipState == ShipState.Death)
+        {
+            return;
+        }
         _movement = value.Get<Vector2>();
     }
 
     public void OnDirectionalMovement(InputValue value)
     {
+        if(_shipState == ShipState.Death)
+        {
+            return;
+        }
         if(value.isPressed)
         {
             _shipState = ShipState.Maneuver;
@@ -88,7 +104,7 @@ public class ShipMovementHandler : ShipManager
     {
         _isMovingForward = value.isPressed;
 
-        if(!_hasInitialized)
+        if(!_hasInitialized || _shipState == ShipState.Death)
         {
             return;
         }
@@ -97,7 +113,7 @@ public class ShipMovementHandler : ShipManager
 
         if(!_isMovingForward)
         {
-            if(_shipAttackModeHandler.ShipState == ShipState.AttackMode)
+            if(_shipAttackModeHandler.ShipState == ShipState.AttackMode ||  _shipAttackModeHandler.ShipState == ShipState.Death)
             {
                 return;
             }
@@ -134,7 +150,7 @@ public class ShipMovementHandler : ShipManager
 
     private void ShipMovement()
     {
-        if(!_hasInitialized)
+        if(!_hasInitialized || _shipState == ShipState.Death)
         {
             return;
         }
@@ -254,12 +270,10 @@ public class ShipMovementHandler : ShipManager
 
     private void OnMoveForwardSFX()
     {
-        _audioManager.GetAudioSFX().clip = _moveforwardSFX;
-        _audioManager.GetAudioSFX().loop = enabled;
-
-        if(!_audioManager.GetAudioSFX().isPlaying)
+        _audioVFX.clip = _moveforwardSFX;
+        if(!_audioVFX.isPlaying)
         {
-            _audioManager.GetAudioSFX().Play();
+            _audioVFX.Play();
         }
     }
 
@@ -284,7 +298,7 @@ public class ShipMovementHandler : ShipManager
 
     public void OnStopMovementSFX()
     {
-        _audioManager.GetAudioSFX().Stop();
-        _audioManager.PlayOneShot(_stopMovementSFX , _audioManager.GetAudioSFX() , .5f , 1f);
+        _audioVFX.Stop();
+        _audioManager.PlayOneShot(_stopMovementSFX , _audioVFX , .5f , 1f);
     }
 }

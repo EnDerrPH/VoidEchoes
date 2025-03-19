@@ -18,6 +18,7 @@ public class ShipAttackModeHandler : ShipManager
     const float _shipRotationSpeed = 40f;
     const float _targetDistance = 250f;
     Quaternion _rotationTarget;
+    Quaternion _shipRotationTarget;
     int _previousParticleCount = 0;
     bool _hasInitialized;
     public GameObject []FireAmmos {get => _fireAmmos; set => _fireAmmos = value;}
@@ -25,13 +26,15 @@ public class ShipAttackModeHandler : ShipManager
 
     public static event Action OnAttackModeEvent;
 
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
         ShipMovementHandler.ShipInitializedEvent +=  ShipHasInitialized;
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
         ShipMovementHandler.ShipInitializedEvent -=  ShipHasInitialized;
     }
 
@@ -60,7 +63,7 @@ public class ShipAttackModeHandler : ShipManager
 
     public void OnAttackMode()
     {
-        if(!_hasInitialized)
+        if(!_hasInitialized || _shipState == ShipState.Death)
         {
             return;
         }
@@ -108,12 +111,12 @@ public class ShipAttackModeHandler : ShipManager
     private void SetAttackModeSpeechSFX(AudioClip audioClip)
     {
         _currentAttackModeSpeechSFX = audioClip;
-        _audioManager.PlayOneShot(_currentAttackModeSpeechSFX, _audioManager.GetAudioSpeech(), .7f , 1f);
+        _audioManager.PlayOneShot(_currentAttackModeSpeechSFX, _audioSpeech, .7f , 1f);
     }
 
     private void OnAttackModeSFX()
     {
-        _audioManager.PlayOneShot(GameManager.instance.GetAudioClipData().OnAttackModeSFX, _audioManager.GetAudioSFX() , .5f , 1f);
+        _audioManager.PlayOneShot(GameManager.instance.GetAudioClipData().OnAttackModeSFX, _audioVFX , .5f , 1f);
     }
 
    private void InitializeFireAmmo()
@@ -124,10 +127,11 @@ public class ShipAttackModeHandler : ShipManager
 
    private void SetTargetObjPosition()
    {
-        if(_shipState != ShipState.AttackMode)
+        if(_shipState != ShipState.AttackMode || _shipState == ShipState.Death)
         {
             return;
         }
+
         Vector3 targetPointPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _targetDistance);
         _targetObj.transform.position = Camera.main.ScreenToWorldPoint(targetPointPosition);
         SetShipRotation();
@@ -135,13 +139,18 @@ public class ShipAttackModeHandler : ShipManager
 
    private void SetShipRotation()
    {
-        if(_shipMovementHandler.ShipState ==  ShipState.Maneuver)
+        if(_shipMovementHandler.ShipState ==  ShipState.Maneuver || _shipState != ShipState.AttackMode)
+        {
+            return;
+        }
+
+        if(Quaternion.Angle(transform.rotation, _shipRotationTarget) < 1f)
         {
             return;
         }
         Vector3 direction = _targetObj.transform.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _shipRotationSpeed * Time.deltaTime);
+        _shipRotationTarget = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, _shipRotationTarget, _shipRotationSpeed * Time.deltaTime);
    }
 
    private void SetBeamRotation()
@@ -162,7 +171,7 @@ public class ShipAttackModeHandler : ShipManager
 
    private void Firing()
    {
-        if(_shipState != ShipState.AttackMode || !_isFiring)
+        if(_shipState != ShipState.AttackMode || !_isFiring || _shipState == ShipState.Death)
         {
             return;
         }
@@ -203,7 +212,7 @@ public class ShipAttackModeHandler : ShipManager
 
         if(currentParticleCount > _previousParticleCount)
         {
-            _audioManager.PlayOneShot(_fireSFX , _audioManager.GetAudioSFX() , .5f , 1f);
+            _audioManager.PlayOneShot(_fireSFX , _audioVFX , .5f , 1f);
         }
         _previousParticleCount = currentParticleCount; 
     }

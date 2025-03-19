@@ -11,6 +11,9 @@ TagManager:
   - CinemachineCamera
   - PlayerShip
   - PlayerAmmo
+  - MapDevice
+  - HologramView
+  - Terrain
   layers:
   - Default
   - TransparentFX

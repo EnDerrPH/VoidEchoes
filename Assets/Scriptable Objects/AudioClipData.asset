@@ -22,5 +22,6 @@ MonoBehaviour:
   _hyperDriveSFX: {fileID: 8300000, guid: aaa3c34456ab1a146a195b5282e7d76d, type: 3}
   _OnAttackModeSFX: {fileID: 8300000, guid: 4fd8edcacd6688640a3f643c81923bb6, type: 3}
   _onFireSFX: {fileID: 8300000, guid: dd73cf7675eb60449a2846023a89436c, type: 3}
-  _OnMovemeFowardSFX: {fileID: 8300000, guid: 7e7212fe3496ace488ec8ca94bd08978, type: 3}
-  _OnStopMovementSFX: {fileID: 8300000, guid: dba489c24ebec1848af64c4f44465d46, type: 3}
+  _onMovemeFowardSFX: {fileID: 8300000, guid: 7e7212fe3496ace488ec8ca94bd08978, type: 3}
+  _onStopMovementSFX: {fileID: 8300000, guid: dba489c24ebec1848af64c4f44465d46, type: 3}
+  _onDeathSFX: {fileID: 8300000, guid: c29b88ec32156904f90e9a26e89462c5, type: 3}

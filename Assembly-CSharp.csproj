@@ -96,10 +96,10 @@
     <Compile Include="Assets\Scripts\SceneScripts\MainMenuScene\MainMenuCameraHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuCloseFunctionalitySettingsHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\WeaponManager.cs" />
-    <Compile Include="Assets\Scripts\InteractableScripts\ProjectorDeviceManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconEnableHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconOffsetChangeHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\References\PieMenuElements.cs" />
+    <Compile Include="Assets\Scripts\BaseScripts\ObjectManager.cs" />
     <Compile Include="Assets\Scripts\ReflectionTriggerHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Toggler\PieMenuToggler.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\CharacterController.cs" />
@@ -112,7 +112,6 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\CustomShapeButton.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemsCreator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\CustomAttributes\OnValueChangeAttribute\OnValueChangeAttribute.cs" />
-    <Compile Include="Assets\Scripts\InteractableScripts\InteractableHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\PieMenuSharedLifecycleHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconCreator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\MenuItemAdder.cs" />
@@ -170,6 +169,7 @@
     <Compile Include="Assets\Scripts\MonsterScripts\MonsterController.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\MenuItemRestorer.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Audio\CheckSFXVolume.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\MapDeviceHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuSelectionSettings.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\CombatManager.cs" />
     <Compile Include="Assets\Scripts\OnStairTrigger.cs" />
@@ -194,6 +194,7 @@
     <Compile Include="Assets\Scripts\SceneScripts\LoadingSceneManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconScaler.cs" />
     <Compile Include="Assets\Scripts\StairsChecker.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\StepHandler.cs" />
     <Compile Include="Assets\Scripts\Controller\BaseController.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Audio\CheckMusicVolume.cs" />
     <Compile Include="Assets\Scripts\InteractableCanvasHandler.cs" />

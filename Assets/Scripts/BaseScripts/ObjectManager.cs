@@ -1,12 +1,12 @@
 using UnityEngine;
 
-public class InteractableHandler : MonoBehaviour
+public class ObjectManager : MonoBehaviour
 {
+    [SerializeField] protected ObjectType _objectType;
     [SerializeField] protected bool _isOpen;
     [SerializeField] protected GameObject _canvas;
-    [SerializeField] protected InteractableType _interactableType;
     public bool IsOpen {get => _isOpen; set => _isOpen = value;}
-    public InteractableType InteractableType { get => _interactableType;}
+    public ObjectType ObjectType {get => _objectType; set => _objectType = value;}
 
     public void ActivateObject(bool isActive)
     {
@@ -15,6 +15,10 @@ public class InteractableHandler : MonoBehaviour
 
     public void ActivateCanvas(bool isActive)
     {
+        if(_canvas == null)
+        {
+            return;
+        }
         if(_isOpen)
         {
             _canvas.SetActive(false);

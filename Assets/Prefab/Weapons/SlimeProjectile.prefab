@@ -4990,7 +4990,41 @@ MonoBehaviour:
   _damage: 0
   _particleType: 1
   _playerShip: {fileID: 0}
-  _maxHeight: 0
+  heightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.0017498
+      outSlope: 3.0017498
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.102408595
+    - serializedVersion: 3
+      time: 0.4986968
+      value: 0.9965504
+      inSlope: 0.016856555
+      outSlope: 0.016856555
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.1299775
+    - serializedVersion: 3
+      time: 0.99835205
+      value: 0.002357483
+      inSlope: -2.9126246
+      outSlope: -2.9126246
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.095616825
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  travelDuration: 1
+  maxHeight: 10
 --- !u!1 &8251819795761665293
 GameObject:
   m_ObjectHideFlags: 0
