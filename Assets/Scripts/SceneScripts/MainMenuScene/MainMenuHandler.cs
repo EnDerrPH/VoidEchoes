@@ -10,6 +10,7 @@ public class MainMenuHandler : InitializeManager
     [SerializeField] Button _exitButton;
     [SerializeField] Button []_mainMenuButtons;
     [SerializeField] Animator _animator;
+   // [SerializeField] AudioManager _mainMenuAudioManger;
     public UnityEvent OnPlayEvent;
 
     public override void AddListener()
@@ -21,7 +22,7 @@ public class MainMenuHandler : InitializeManager
         _exitButton.onClick.AddListener(OnExit);
         foreach(Button button in _mainMenuButtons)
         {
-            button.onClick.AddListener(() => {_audioManager.PlayOneShot(_audioClipData.MainMenuButtonSFX, _audioManager.GetAudioSource() , .5f , 1f); });
+            button.onClick.AddListener(OnUIButton);
         }
     }
 
@@ -44,9 +45,14 @@ public class MainMenuHandler : InitializeManager
     {
         
     }
+
+    private void OnUIButton()
+    {
+        _audioManager.PlaySound(_audioManager.GetAudioClipData().MainMenuButtonSFX, .6f);
+    }
+
     private void OnExit()
     {
-        
         Application.Quit();
     }
 }

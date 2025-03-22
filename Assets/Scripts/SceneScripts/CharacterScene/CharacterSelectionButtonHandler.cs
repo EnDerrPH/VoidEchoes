@@ -10,6 +10,7 @@ public class CharacterSelectionButtonHandler : InitializeManager , IPointerClick
     CharacterData _characterData;
     public override void Start()
     {
+        base.Start();
         _characterSelectionHandler = GameObject.FindAnyObjectByType<CharacterSceneHandler>();
     }
 
@@ -26,6 +27,6 @@ public class CharacterSelectionButtonHandler : InitializeManager , IPointerClick
         _characterSelectionHandler.CharacterNameText.text = _characterData.CharacterName;
         _characterSelectionHandler.SelectedCharacterData = _characterData;
         _characterSelectionHandler.SetSelectedCharacter();
-        _audioManager.PlayOneShot(_audioClipData.MainMenuButtonSFX, _audioManager.GetAudioSource() , .5f , 1f);
+        _audioManager.PlaySound(_audioManager.GetAudioClipData().MainMenuButtonSFX , .6f);
     }
 }

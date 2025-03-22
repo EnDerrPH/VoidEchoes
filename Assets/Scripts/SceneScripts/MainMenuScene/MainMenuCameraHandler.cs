@@ -6,10 +6,12 @@ public class MainMenuCameraHandler : InitializeManager
     [SerializeField] Transform _nextSceneObj;
     [SerializeField] MainMenuHandler _mainMenuHandler;
     [SerializeField] float _speed;
+    AudioSource _audioHyperDrive;
     bool _isPlay;
 
     public override void Start()
     {
+        base.Start();
         _mainMenuHandler.OnPlayEvent.AddListener(OnPlay);
     }
 
@@ -21,8 +23,7 @@ public class MainMenuCameraHandler : InitializeManager
     private void OnPlay()
     {
         _isPlay = true;
-        _audioManager.GetAudioSource().volume = 1f;
-        _audioManager.PlayOneShot(_gameManager.GetAudioClipData().HyperDriveSFX , _audioManager.GetAudioSource() , .6f , 1f);
+        _audioHyperDrive = _audioManager.PlaySound(_audioManager.GetAudioClipData().HyperDriveSFX);
         _hyperDrive.gameObject.SetActive(true);
     }
 
@@ -37,6 +38,7 @@ public class MainMenuCameraHandler : InitializeManager
 
     void OnTriggerEnter(Collider other)
     {
+        _audioHyperDrive.Stop();
         _loadingSceneManager.LoadScene("CharacterScene");
     }
     

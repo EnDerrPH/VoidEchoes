@@ -21,16 +21,9 @@ public class ShipMovementHandler : ShipManager
     Vector2 _movement; 
     bool _isMovingForward;
     bool _hasInitialized;
-    AudioClip _moveforwardSFX;
-    AudioClip _stopMovementSFX;
+    AudioSource _currentMoveAudioSource;
     public static event Action ShipInitializedEvent;
     
-    public override void Start()
-    {
-        base.Start();
-        InitializeMovementSounds();
-    }
-
     private void Update()
     {
         InitializeShip();
@@ -124,12 +117,6 @@ public class ShipMovementHandler : ShipManager
     public void SetShipState(ShipState shipState)
     {
         _shipState = shipState;
-    }
-
-    private void InitializeMovementSounds()
-    {
-        _moveforwardSFX = GameManager.instance.GetAudioClipData().OnMoveForwardSFX;
-        _stopMovementSFX = GameManager.instance.GetAudioClipData().OnStopMovementSFX;
     }
 
     private void CheckShipMovement()
@@ -270,10 +257,9 @@ public class ShipMovementHandler : ShipManager
 
     private void OnMoveForwardSFX()
     {
-        _audioVFX.clip = _moveforwardSFX;
-        if(!_audioVFX.isPlaying)
+        if(_currentMoveAudioSource == null || !_currentMoveAudioSource.isPlaying)
         {
-            _audioVFX.Play();
+           _currentMoveAudioSource =  _audioManager.PlaySound(_audioManager.GetAudioClipData().OnMoveForwardSFX);
         }
     }
 
@@ -298,7 +284,11 @@ public class ShipMovementHandler : ShipManager
 
     public void OnStopMovementSFX()
     {
-        _audioVFX.Stop();
-        _audioManager.PlayOneShot(_stopMovementSFX , _audioVFX , .5f , 1f);
+        if(_currentMoveAudioSource == null)
+        {
+            return;
+        }
+        _currentMoveAudioSource.Stop();
+        _audioManager.PlaySound(_audioManager.GetAudioClipData().OnStopMovementSFX);
     }
 }

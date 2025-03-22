@@ -1,71 +1,124 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
-public class AudioManager : InitializeManager
+public class AudioManager : MonoBehaviour
 {
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField]  AudioMixer _audioMixer;
+    [SerializeField] AudioSource _audioPrefab;
+    [SerializeField] AudioClipData _audioClipData;
+    [SerializeField] AudioMixer _audioMixer;
+    const int _poolSize = 2; 
+    AudioSource _audioSourceBGM;
+    private List<AudioSource> _audioPool = new List<AudioSource>();
+
+    public static AudioManager instance;
 
     private void Awake()
     {
-        if (_audioManager != null && _audioManager != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
         else
         {
-            _audioManager = this;
+            instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+
+        for (int i = 0; i < _poolSize; i++)
+        {
+            CreateAudioPool();
         }
     }
 
-    public override void InitializeComponents()
+    private void OnEnable()
     {
-        base.InitializeComponents();
-        SetBGM(_gameManager.GetScene());
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public override void Start()
+    private void OnDisable()
     {
-        SetBGM(_gameManager.GetScene());
+       SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    public void SetBGM(GameScene scene)
+    public  void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SetBGM(GameManager.instance.GetScene());
+    }
+
+    void Start()
+    {
+        CreateAudioPool();
+        SetBGM(GameManager.instance.GetScene());
+    }
+
+    public AudioClipData GetAudioClipData()
+    {
+        return _audioClipData;
+    }
+
+    public AudioSource PlaySound(AudioClip clip, float volume = 1f)
+    {
+        // Find an available AudioSource
+        AudioSource availableSource = _audioPool.Find(source => !source.isPlaying);
+
+        if (availableSource == null)
+        {
+            // Optionally expand the pool
+            availableSource = CreateAudioPool();
+        }
+        // Play the sound
+        availableSource.clip = clip;
+        availableSource.volume = volume;
+        availableSource.Play();
+
+        return availableSource;
+    }
+
+    public void AmplifySound(float factor)
+    {
+        float dB = Mathf.Log10(factor) * 20f; // Convert factor to decibels
+        _audioMixer.SetFloat("SFXVolume", dB);
+    }
+
+
+    private void SetBGM(GameScene scene)
     {
         switch(scene)
         {
             case GameScene.MainMenu:
-            _audioSource.clip = _audioClipData.MainMenuBGM;
+            PlayBGM(_audioClipData.MainMenuBGM);
             break;
             case GameScene.CharacterSelection:
-            _audioSource.clip = _audioClipData.CharacterSelectionBGM;
+            PlayBGM(_audioClipData.CharacterSelectionBGM);
             break;
             case GameScene.Home:
-            _audioSource.clip = _audioClipData.HomeBGM;
+            PlayBGM(_audioClipData.HomeBGM);
             break;
             case GameScene.Game:
-           // _audioSource.clip = _audioClipData.MapBGM;
+            PlayBGM(_audioClipData.GameBGM);
             break;
         }
-        _audioSource.volume = .5f;
-        _audioSource.Play();
     }
 
-    public AudioSource GetAudioSource()
+    private void PlayBGM(AudioClip audioClip)
     {
-        return _audioSource;
+        if(_audioSourceBGM == null)
+        {
+            _audioSourceBGM = PlaySound(audioClip);
+            return;
+        }
+
+        _audioSourceBGM.clip = audioClip;
+        _audioSourceBGM.loop = enabled;
+        _audioSourceBGM.Play();
     }
 
-    public virtual void PlayOneShot(AudioClip audioClip, AudioSource audioSource , float volume , float mixerVolume)
+    private AudioSource CreateAudioPool()
     {
-        audioSource.volume = volume;
-        SetMixerVolume(mixerVolume);
-        audioSource.PlayOneShot(audioClip);
-    }
-
-    private void SetMixerVolume(float multiplier)
-    {
-        float volume = Mathf.Log10(multiplier) * 20;
-        _audioMixer.SetFloat("SFXVolume", volume); 
+        AudioSource newSource = Instantiate(_audioPrefab, transform);
+        _audioPool.Add(newSource);
+        return newSource;
     }
 }

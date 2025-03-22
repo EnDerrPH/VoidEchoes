@@ -105,6 +105,7 @@
     <Compile Include="Assets\Scripts\CharacterScripts\CharacterController.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\Shape Settings\PieMenuShapeSettings.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\ThemeEditor\ThemedUIData.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\VFXData.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\AudioClipData.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\SelectionCalculator.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\MapData.cs" />

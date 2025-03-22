@@ -15,13 +15,16 @@ MonoBehaviour:
   _mainMenuButtonSFX: {fileID: 8300000, guid: eb51df4d4ab16c94ca077d6fa8adf4c7, type: 3}
   _groundStepSFX: {fileID: 0}
   _stairStepSFX: {fileID: 0}
-  _mainMenuBGM: {fileID: 8300000, guid: add1f0a441a9ec745aed7db2d795eefb, type: 3}
-  _homeBGM: {fileID: 8300000, guid: 0db4e4582a1268f4a833a24578f94cd2, type: 3}
-  _characterSelectionBGM: {fileID: 8300000, guid: 2eba145757978bb44b13aafe429f2dc5, type: 3}
-  _gameBGM: {fileID: 0}
   _hyperDriveSFX: {fileID: 8300000, guid: aaa3c34456ab1a146a195b5282e7d76d, type: 3}
-  _OnAttackModeSFX: {fileID: 8300000, guid: 4fd8edcacd6688640a3f643c81923bb6, type: 3}
+  _mainMenuBGM: {fileID: 8300000, guid: 7b46d97475d5e8948906f37f414ebf49, type: 3}
+  _homeBGM: {fileID: 8300000, guid: 0db4e4582a1268f4a833a24578f94cd2, type: 3}
+  _characterSelectionBGM: {fileID: 8300000, guid: 1b3f461c6ad3c144688a28968f3a9a8d, type: 3}
+  _gameBGM: {fileID: 8300000, guid: 6b66cf994989d7d418196b6ff616a121, type: 3}
+  _onAttackModeSFX: {fileID: 8300000, guid: 4fd8edcacd6688640a3f643c81923bb6, type: 3}
   _onFireSFX: {fileID: 8300000, guid: dd73cf7675eb60449a2846023a89436c, type: 3}
   _onMovemeFowardSFX: {fileID: 8300000, guid: 7e7212fe3496ace488ec8ca94bd08978, type: 3}
   _onStopMovementSFX: {fileID: 8300000, guid: dba489c24ebec1848af64c4f44465d46, type: 3}
   _onDeathSFX: {fileID: 8300000, guid: c29b88ec32156904f90e9a26e89462c5, type: 3}
+  _shipOnHitSFX: {fileID: 8300000, guid: cb24edbe9fadf2346a2e4dbaca38d44c, type: 3}
+  _lootNormalSFX: {fileID: 8300000, guid: 2865fb82ce7e1fe4f9d2b7cf5a97c05e, type: 3}
+  _lootRareSFX: {fileID: 8300000, guid: ea8c25bc7b682b249b48c0b665ad4a32, type: 3}

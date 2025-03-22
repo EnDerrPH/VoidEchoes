@@ -3,14 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class InitializeManager : MonoBehaviour
 {
-    protected GameManager _gameManager;
-    protected AudioManager _audioManager;
-    protected AudioClipData _audioClipData;
+    [SerializeField] protected GameManager _gameManager;
+    [SerializeField] protected AudioManager _audioManager;
     protected LoadingSceneManager _loadingSceneManager;
 
     public virtual void OnEnable()
     {
-        SetData();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -21,14 +19,13 @@ public class InitializeManager : MonoBehaviour
 
     public virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (GameManager.instance != null)
-        {
-            InitializeComponents();
-        }
+        SetData();
+        InitializeComponents(); 
     }
 
     public virtual void Start()
     {
+        SetData();
         AddListener();
     }
 
@@ -44,8 +41,7 @@ public class InitializeManager : MonoBehaviour
     private void SetData()
     {
         _gameManager = GameManager.instance;
-        _audioManager = _gameManager.GetAudioManager();
+        _audioManager = AudioManager.instance;
         _loadingSceneManager = _gameManager.GetLoadingSceneManager();
-        _audioClipData = _gameManager.GetAudioClipData();
     }
 }

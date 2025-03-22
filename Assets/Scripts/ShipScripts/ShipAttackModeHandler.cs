@@ -7,20 +7,22 @@ public class ShipAttackModeHandler : ShipManager
 {
     [SerializeField] ShipMovementHandler _shipMovementHandler;
     [SerializeField] GameObject []_fireAmmos;
-    [SerializeField] bool _isFiring;
     [SerializeField] ParticleSystem _fireAmmoVFX;
     List<AudioClip> _audioAttackList = new List<AudioClip>();
-    Coroutine _rotationCoroutine;
+    Camera _mainCamera;
     GameObject _crosshair;
     GameObject _targetObj;
     AudioClip _currentAttackModeSpeechSFX;
     AudioClip _fireSFX;
-    const float _shipRotationSpeed = 40f;
+    Vector3 _targetPosition;
+    const float _shipRotationSpeed = 2f;
     const float _targetDistance = 250f;
-    Quaternion _rotationTarget;
+    Vector3 _shipRotateDirection;
+    Quaternion _beamRotationTarget;
     Quaternion _shipRotationTarget;
     int _previousParticleCount = 0;
     bool _hasInitialized;
+    bool _isFiring;
     public GameObject []FireAmmos {get => _fireAmmos; set => _fireAmmos = value;}
     public List<AudioClip> AudioAttackList {get => _audioAttackList; set => _audioAttackList = value;}
 
@@ -41,14 +43,17 @@ public class ShipAttackModeHandler : ShipManager
     public override void Start()
     {
         base.Start();
+        _mainCamera = Camera.main;
+        Cursor.visible = false;
         InitializeFireAmmo();
         SetAttackModeSFXList();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Firing();
         SetTargetObjPosition();
+        SetShipRotation();
     }
 
     public void OnFire(InputValue value)
@@ -111,18 +116,18 @@ public class ShipAttackModeHandler : ShipManager
     private void SetAttackModeSpeechSFX(AudioClip audioClip)
     {
         _currentAttackModeSpeechSFX = audioClip;
-        _audioManager.PlayOneShot(_currentAttackModeSpeechSFX, _audioSpeech, .7f , 1f);
+        _audioManager.PlaySound(_currentAttackModeSpeechSFX , .8f);
     }
 
     private void OnAttackModeSFX()
     {
-        _audioManager.PlayOneShot(GameManager.instance.GetAudioClipData().OnAttackModeSFX, _audioVFX , .5f , 1f);
+        _audioManager.PlaySound(_audioManager.GetAudioClipData().OnAttackModeSFX , .6f);
     }
 
    private void InitializeFireAmmo()
    {
         _fireAmmoVFX = _fireAmmos[0].GetComponent<ParticleSystem>();
-        _fireSFX = GameManager.instance.GetAudioClipData().OnFireSFX;
+        _fireSFX = _audioManager.GetAudioClipData().OnFireSFX;
    }
 
    private void SetTargetObjPosition()
@@ -132,9 +137,13 @@ public class ShipAttackModeHandler : ShipManager
             return;
         }
 
-        Vector3 targetPointPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, _targetDistance);
-        _targetObj.transform.position = Camera.main.ScreenToWorldPoint(targetPointPosition);
-        SetShipRotation();
+        if (Vector3.Distance(_targetObj.transform.position, _mainCamera.ScreenToWorldPoint(_targetPosition)) < 0.02f) 
+        {
+            return;
+        }
+
+        _targetPosition.Set(Input.mousePosition.x, Input.mousePosition.y, _targetDistance);
+        _targetObj.transform.position = _mainCamera.ScreenToWorldPoint(_targetPosition);
    }
 
    private void SetShipRotation()
@@ -144,13 +153,15 @@ public class ShipAttackModeHandler : ShipManager
             return;
         }
 
-        if(Quaternion.Angle(transform.rotation, _shipRotationTarget) < 1f)
+        _shipRotateDirection = _targetObj.transform.position - transform.position;
+        _shipRotationTarget = Quaternion.LookRotation(_shipRotateDirection);
+
+        if (Quaternion.Angle(transform.rotation, _shipRotationTarget) < 0.2f) 
         {
             return;
         }
-        Vector3 direction = _targetObj.transform.position - transform.position;
-        _shipRotationTarget = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, _shipRotationTarget, _shipRotationSpeed * Time.deltaTime);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, _shipRotationTarget, _shipRotationSpeed * Time.deltaTime);
    }
 
    private void SetBeamRotation()
@@ -158,8 +169,8 @@ public class ShipAttackModeHandler : ShipManager
         foreach(GameObject fireAmmo in _fireAmmos)
         {
             Vector3 fireDirection = _targetObj.transform.position - transform.position;
-            _rotationTarget = Quaternion.LookRotation(fireDirection);
-            fireAmmo.transform.rotation = _rotationTarget;
+            _beamRotationTarget = Quaternion.LookRotation(fireDirection);
+            fireAmmo.transform.rotation = _beamRotationTarget;
         }
    }
 
@@ -212,7 +223,7 @@ public class ShipAttackModeHandler : ShipManager
 
         if(currentParticleCount > _previousParticleCount)
         {
-            _audioManager.PlayOneShot(_fireSFX , _audioVFX , .5f , 1f);
+            _audioManager.PlaySound(_fireSFX , .3f);
         }
         _previousParticleCount = currentParticleCount; 
     }

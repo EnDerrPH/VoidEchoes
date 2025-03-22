@@ -32,12 +32,9 @@ public class MonsterProjectileHandler : WeaponManager
 
         _elapsedTime += Time.deltaTime;
         t = Mathf.Clamp01(_elapsedTime / _travelDuration); // Normalize time
-
         // Move along the XZ plane
         Vector3 pos = Vector3.Lerp(_startPosition, _targetPosition, t);
-
-        // Apply height using the AnimationCurve
-        float height = heightCurve.Evaluate(t) * _maxHeight; 
+        float height = heightCurve.Evaluate(t) * _maxHeight;
         pos.y = Mathf.Lerp(_startPosition.y, _targetPosition.y, t) + height;
 
         transform.position = pos;

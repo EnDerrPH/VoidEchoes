@@ -15,7 +15,7 @@ public class BaseController : MonoBehaviour
     public virtual void InitializeComponents()
     {
         _animator = GetComponent<Animator>();
-        _audioManager = GameManager.instance.GetAudioManager();
+        _audioManager = AudioManager.instance;
     }
 
     public void ChangeAnimation(string animation , float crossFadeTime)

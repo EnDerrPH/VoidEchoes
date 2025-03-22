@@ -6,20 +6,22 @@ public class GameSceneHandler : InitializeManager
 {
    [SerializeField] Transform _terrainPos;
    [SerializeField] CinemachineManager _cinemachineManager;
-   List<AudioClip> _audioAttackList = new List<AudioClip>();
    [SerializeField] GameObject _targetObj;
    [SerializeField] GameObject _crosshair;
+   [SerializeField] List<ParticleSystem> _lootDropList = new List<ParticleSystem>();
+   VFXData _VFXData;
    ShipCombatHandler _shipCombatHandler;
    MapHandler _mapHandler;
    MapData _mapData;
-   AudioClip _currentAttackModeSpeechSFX;
    Transform _startPosition;
    GameObject _playerShip;
-   bool _isAttackmode;
    ShipAttackModeHandler _shipAttackModeHandler;
+
+   public List<ParticleSystem> LootDropList {get => _lootDropList; set => _lootDropList = value;}
 
    public override void InitializeComponents()
    {
+        _VFXData = _gameManager.GetVFXData();
         InitializeTerrain();
         InitializeShip();
         InitializeMonsters();
@@ -58,6 +60,7 @@ public class GameSceneHandler : InitializeManager
             //SetMonsterCombat
             MonsterCombatHandler monsterCombatHandler = monsterObj.GetComponent<MonsterCombatHandler>();
             monsterCombatHandler.Health = monsterData.MonsterHealth;
+            monsterCombatHandler.SetGameSceneHandler(this);
         }
     }
 
@@ -73,9 +76,12 @@ public class GameSceneHandler : InitializeManager
             weapon.Damage = _gameManager.GetCharacterData().ShipDamage;
         }
         _shipCombatHandler.Health = _gameManager.GetCharacterData().ShipHealth;
-        _shipCombatHandler.SetDeathSFX(_audioClipData.OnDeathSFX);
+        _shipCombatHandler.SetDeathSFX(_audioManager.GetAudioClipData().OnDeathSFX);
         _shipCombatHandler.enabled = true;
-
+        ParticleSystem onHitVFX= Instantiate(_VFXData.ShipOnHitVFX, _playerShip.transform.position,  _playerShip.transform.rotation);
+        ParticleSystem explosion01VFX = Instantiate(_VFXData.Explosion01VFX, _playerShip.transform.position,  _playerShip.transform.rotation);
+        ParticleSystem explosion02VFX= Instantiate(_VFXData.Explosion02VFX, _playerShip.transform.position,  _playerShip.transform.rotation);
+        _shipCombatHandler.SetVFX(onHitVFX, explosion01VFX, explosion02VFX);
     }
 
     IEnumerator InitializeShipScripts()

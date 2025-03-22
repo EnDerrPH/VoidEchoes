@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1e7d7c666b1a040ad5e78587b0f4e9, type: 3}
+  m_Name: VFXData
+  m_EditorClassIdentifier: 
+  _explosion01VFX: {fileID: 6512382113737198419, guid: 31bc3c19b92562542b6d71e7ede8c1aa, type: 3}
+  _explosion02VFX: {fileID: 3450782390510706617, guid: 3fdba0fa7de50e143b1fdafe595e5f48, type: 3}
+  _shipOnHitVFX: {fileID: 8449635834461923383, guid: eb67aba9fc691d444acc46e8a146e7f6, type: 3}
+  _shipAmmoVFX: {fileID: 5660972896055907176, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
+  _lootDropVFX: {fileID: 6859094472005569181, guid: 047b9b2aa5ba8644785a56da12e698cf, type: 3}

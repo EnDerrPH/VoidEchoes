@@ -38,22 +38,22 @@ public class MonsterController : BaseController
     {
         _weapon.transform.position = transform.position;
         _weapon.SetActive(true);
-        _audioManager.PlayOneShot(_monsterData.OnAttackSFX,_audioSource , .6f , 1f);
+        _audioManager.PlaySound(_monsterData.OnAttackSFX, .5f);
     }
 
     public void OnMove()
     {
-        _audioManager.PlayOneShot(_monsterData.OnMoveSFX,_audioSource, .5f , 1f);
+        _audioManager.PlaySound(_monsterData.OnMoveSFX , .6f);
     }
 
     public void OnDeath()
     {
-        _audioManager.PlayOneShot(_monsterData.OnDeathSFX,_audioSource , 1f , 10f);
+        _audioManager.PlaySound(_monsterData.OnDeathSFX);
     }
 
     public void OnHit()
     {
-        _audioManager.PlayOneShot(_monsterData.OnHitSFX,_audioSource , .5f , 1f);
+        _audioManager.PlaySound(_monsterData.OnHitSFX , .6f);
     }
 
     public void SetMonsterData(MonsterData monsterData)
@@ -150,7 +150,7 @@ public class MonsterController : BaseController
 
     private void OnAttackAnimation()
     {
-        if(_weapon.activeSelf)
+        if(_weapon.activeSelf || _playerShip.GetComponent<ShipCombatHandler>().Health <= 0)
         {
             PlayAnimation(_onIdle);
             return;

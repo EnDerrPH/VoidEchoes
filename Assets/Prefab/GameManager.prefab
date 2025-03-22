@@ -44,4 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 849cc5cc789d3fa428c8d7b1b0904078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _utilities: {fileID: 11400000, guid: f3d08e7fd7d41cd4ca08a8de169192ce, type: 2}
+  _playerData: {fileID: 0}
+  _scene: 4
+  _audioClipData: {fileID: 11400000, guid: 14df50e572765554b8d4e04ca138b186, type: 2}
+  _characterDataList: {fileID: 11400000, guid: 07058f7dcdb41e646889db10dc2302c2, type: 2}
+  _planetList: {fileID: 11400000, guid: 47a35e7aaebd88f4aaae2a99aa5ae76b, type: 2}
+  _VFXData: {fileID: 11400000, guid: 6444f8939d878d848913eb4159a8efb4, type: 2}
+  _mapList: {fileID: 11400000, guid: 23d34ec84d25d264e9b96900cdd29c28, type: 2}
+  _characterData: {fileID: 0}
+  _mapData: {fileID: 0}
+  _audioSource: {fileID: 8149675033996452800, guid: d7f4b24acae60534eba8356105db649e, type: 3}
+  _loadingSceneManager: {fileID: 0}
+  OnChangeSceneEvent:
+    m_PersistentCalls:
+      m_Calls: []

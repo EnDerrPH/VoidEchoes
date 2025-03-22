@@ -7,13 +7,11 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerData _playerData;
     [SerializeField] GameScene _scene;
-    [SerializeField] AudioClipData _audioClipData;
     [SerializeField] CharacterDataList _characterDataList;
-    [SerializeField] PlanetList _planetList;
+    [SerializeField] VFXData _VFXData;
     [SerializeField] MapList _mapList;
     [SerializeField] CharacterData _characterData;
     [SerializeField] MapData _mapData;
-    [SerializeField] AudioManager _audioManager;
     [SerializeField] LoadingSceneManager _loadingSceneManager;
 
     public static GameManager instance;
@@ -50,29 +48,14 @@ public class GameManager : MonoBehaviour
        OnChangeSceneEvent.Invoke();
     }
 
-    private void Start()
-    {
-        OnChangeSceneEvent.AddListener(() => _audioManager.SetBGM(_scene));
-    }
-
     public GameScene GetScene()
     {
         return _scene;
     }
 
-    public AudioClipData GetAudioClipData()
-    {
-        return _audioClipData;
-    }
-
     public CharacterData GetCharacterData()
     {
         return _characterData;
-    }
-
-    public AudioManager GetAudioManager()
-    {
-        return _audioManager;
     }
 
     public LoadingSceneManager GetLoadingSceneManager()
@@ -89,6 +72,11 @@ public class GameManager : MonoBehaviour
     public MapList GetMapList()
     {
         return _mapList;
+    }
+
+    public VFXData GetVFXData()
+    {
+        return _VFXData;
     }
 
     public PlayerData GetPlayerData()
@@ -115,6 +103,4 @@ public class GameManager : MonoBehaviour
     {
         _mapData = mapData;
     }
-
-
 }

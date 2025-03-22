@@ -3,52 +3,75 @@ using System;
 
 public class ShipCombatHandler : CombatManager
 {
-    [SerializeField] GameObject []_desthShipVFX;
-    [SerializeField] ParticleSystem []_onHitVFX;
-    AudioClip _onDeathSFX;
-    Rigidbody _rb;
+    ShipState _shipState;
+    [SerializeField] ParticleSystem _explosion01VFX;
+    [SerializeField] ParticleSystem _explosion02VFX;
+    [SerializeField] ParticleSystem _onHitVFX;
+    [SerializeField] AudioClip _onDeathSFX;
     bool _hasInitialized;
     public static event Action ShipDeathEvent;
-    public override void OnEnable()
+    private void OnEnable()
     {
         ShipMovementHandler.ShipInitializedEvent += RemoveRigidbodyConstraints;
     }
 
-    public override void OnDisable()
+    private void OnDisable()
     {
         ShipMovementHandler.ShipInitializedEvent -= RemoveRigidbodyConstraints;
     }
+
 
     public override void AfterDeath()
     {
         _shipState = ShipState.Death;
         ShipDeathEvent?.Invoke();
         GetComponent<MeshRenderer>().enabled = false;
-        _audioManager.PlayOneShot(_onDeathSFX, _audioVFX, 1f , 1f);
-        foreach(GameObject vfx in _desthShipVFX)
-        {
-            vfx.SetActive(true);
-        }
+        _audioManager.PlaySound(_onDeathSFX, 1f);
+        OnDeathVFX();
     }
     public void SetDeathSFX(AudioClip DeathSFX)
     {
         _onDeathSFX = DeathSFX;
     }
+
+
+    public void SetVFX(ParticleSystem onHitVFX , ParticleSystem explosion01VFX, ParticleSystem explosion02VFX)
+    {
+        _onHitVFX = onHitVFX;
+        _explosion01VFX = explosion01VFX;
+        _explosion02VFX = explosion02VFX;
+    }
+
     private void RemoveRigidbodyConstraints()
     {
-        _rb = GetComponent<Rigidbody>();
         _rb.constraints = RigidbodyConstraints.None;
         _hasInitialized = true;
     }
 
+    private void OnDeathVFX()
+    {
+        _explosion01VFX.gameObject.transform.position = transform.position;
+        _explosion02VFX.gameObject.transform.position = transform.position;
+        _explosion01VFX.Play();
+        _explosion02VFX.Play();
+
+    }
+
     private void OnHitVFX()
     {
-        int randomIndex = UnityEngine.Random.Range(0, _onHitVFX.Length);
-        ParticleSystem selectedVFX = _onHitVFX[randomIndex];
-        if (!selectedVFX.isPlaying)
-        {
-            selectedVFX.Play();
-        }
+        if (_onHitVFX == null) return;
+
+        Collider shipCollider = GetComponent<Collider>();
+        if (shipCollider == null) return;
+
+        Vector3 randomPosition = new Vector3(
+            UnityEngine.Random.Range(shipCollider.bounds.min.x, shipCollider.bounds.max.x),
+            UnityEngine.Random.Range(shipCollider.bounds.min.y, shipCollider.bounds.max.y),
+            UnityEngine.Random.Range(shipCollider.bounds.min.z, shipCollider.bounds.max.z)
+        );
+
+        _onHitVFX.transform.position = randomPosition;
+        _onHitVFX.Play();
     }
     private void OnParticleCollision(GameObject other)
     {
@@ -60,6 +83,7 @@ public class ShipCombatHandler : CombatManager
         if(projectileHandler != null && projectileHandler.ParticleType == ParticleType.Monster)
         {
             OnHitVFX();
+            _audioManager.PlaySound(_audioManager.GetAudioClipData().ShipoOnHitSFX, .5f);
             CameraShake.Instance.ShakeCamera();
             OnHit(projectileHandler.Damage); 
         }
