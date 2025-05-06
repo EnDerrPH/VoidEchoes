@@ -17,3 +17,5 @@ MonoBehaviour:
   _shipOnHitVFX: {fileID: 8449635834461923383, guid: eb67aba9fc691d444acc46e8a146e7f6, type: 3}
   _shipAmmoVFX: {fileID: 5660972896055907176, guid: 3b5e7ec24c6afeb4b9897226cd904fb2, type: 3}
   _lootDropVFX: {fileID: 6859094472005569181, guid: 047b9b2aa5ba8644785a56da12e698cf, type: 3}
+  _lootProjectileVFX: {fileID: 262901563137538906, guid: 2fd1a802c91ac0d49a1b7a8f4236aaf6, type: 3}
+  _portalVFX: {fileID: 2235022132166556007, guid: fc94105a2d282124497a333cf66e2af4, type: 3}

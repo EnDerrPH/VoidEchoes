@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerData _playerData;
     [SerializeField] GameScene _scene;
     [SerializeField] CharacterDataList _characterDataList;
+    [SerializeField] PlanetDataList _planetDataList;
     [SerializeField] VFXData _VFXData;
     [SerializeField] MapList _mapList;
     [SerializeField] CharacterData _characterData;
@@ -30,6 +31,9 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+
+
+        Application.targetFrameRate = 120;
     }
 
     private void OnEnable()
@@ -77,6 +81,11 @@ public class GameManager : MonoBehaviour
     public VFXData GetVFXData()
     {
         return _VFXData;
+    }
+
+    public PlanetDataList GetPlanetDataList()
+    {
+        return _planetDataList;
     }
 
     public PlayerData GetPlayerData()

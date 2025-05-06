@@ -17,10 +17,11 @@ MonoBehaviour:
   _ship: {fileID: 3924849305181301339, guid: 04c5e4295b47b7b408f7baa85a2994d7, type: 3}
   _character: {fileID: 3336408599182588913, guid: e2cf0671ff37d814885bf5e8cc9e663c, type: 3}
   _characterIcon: {fileID: 21300000, guid: 439be9c5d57220f47b0f4e9f5e6e5bb6, type: 3}
-  _shipHealth: 90
-  _shipDamage: 6
-  _startingXPosition: 3
-  _startingZPosition: -10
+  _startingXPosition: 0
+  _startingZPosition: 0
   _audioAttackList:
   - {fileID: 8300000, guid: 9b2bf23330d8d4d4b9f69b05d686e896, type: 3}
   - {fileID: 8300000, guid: 28f719bd6aefd624f9f99a58c65f273c, type: 3}
+  _shipHealth: 90
+  _shipDamage: 6
+  _shipFuel: 2000

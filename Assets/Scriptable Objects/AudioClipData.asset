@@ -22,9 +22,15 @@ MonoBehaviour:
   _gameBGM: {fileID: 8300000, guid: 6b66cf994989d7d418196b6ff616a121, type: 3}
   _onAttackModeSFX: {fileID: 8300000, guid: 4fd8edcacd6688640a3f643c81923bb6, type: 3}
   _onFireSFX: {fileID: 8300000, guid: dd73cf7675eb60449a2846023a89436c, type: 3}
-  _onMovemeFowardSFX: {fileID: 8300000, guid: 7e7212fe3496ace488ec8ca94bd08978, type: 3}
+  _onMovemeFowardSFX: {fileID: 8300000, guid: 08263765e9a812047a1ce15f28d52ff2, type: 3}
   _onStopMovementSFX: {fileID: 8300000, guid: dba489c24ebec1848af64c4f44465d46, type: 3}
   _onDeathSFX: {fileID: 8300000, guid: c29b88ec32156904f90e9a26e89462c5, type: 3}
   _shipOnHitSFX: {fileID: 8300000, guid: cb24edbe9fadf2346a2e4dbaca38d44c, type: 3}
   _lootNormalSFX: {fileID: 8300000, guid: 2865fb82ce7e1fe4f9d2b7cf5a97c05e, type: 3}
   _lootRareSFX: {fileID: 8300000, guid: ea8c25bc7b682b249b48c0b665ad4a32, type: 3}
+  _obtainLootSFX: {fileID: 8300000, guid: ba6bfb7db6075a445ab9d98788b9daa8, type: 3}
+  _openMapDeviceSFX: {fileID: 8300000, guid: 76786eb8c76b5b640a2a10f846a00011, type: 3}
+  _closeMapDeviceSFX: {fileID: 8300000, guid: a4c4346e87c8c284494e0d9a6eee22c7, type: 3}
+  _showPlanetsSFX: {fileID: 8300000, guid: 1a12371addf42ef448d430c1b920aa82, type: 3}
+  _OnPlanetClickSFX: {fileID: 8300000, guid: 4e2bf25e96d481742b2e734fe3406a96, type: 3}
+  _OnMapDeviceLoopSFX: {fileID: 8300000, guid: 7e7212fe3496ace488ec8ca94bd08978, type: 3}

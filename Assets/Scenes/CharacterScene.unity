@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 375464217}
   - component: {fileID: 375464221}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UICharacterSceneHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -377,14 +377,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3848f63605bee74282693b5dea7f58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameScene: 1
-  _characterButtonContent: {fileID: 1825254860}
-  _characterContent: {fileID: 1837380829}
-  _shipContent: {fileID: 262906090}
-  _characterNameText: {fileID: 1349083711}
+  _gameManager: {fileID: 0}
+  _audioManager: {fileID: 0}
   _characterPrefab: {fileID: 4282969088379985560, guid: f8d60089533bc9d4e9b5cdd762fd9c04, type: 3}
+  _characterButtonContent: {fileID: 1825254860}
+  _characterNameText: {fileID: 1349083711}
   _startGameButton: {fileID: 1217990279}
-  _characterList: []
+  _characterSceneHandler: {fileID: 775363258}
 --- !u!1 &637099955
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,6 +505,56 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &775363257
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 775363259}
+  - component: {fileID: 775363258}
+  m_Layer: 0
+  m_Name: CharacterSceneHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &775363258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775363257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebfb4259d581db74f8404cc851fa9846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameManager: {fileID: 0}
+  _audioManager: {fileID: 0}
+  _shipParent: {fileID: 262906090}
+  _characterParent: {fileID: 1837380829}
+  _characterTransform: {fileID: 856066991}
+  _shipTransform: {fileID: 843879796}
+--- !u!4 &775363259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 775363257}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.621328, y: -0.009673078, z: -2.3980417}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &843879795
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,13 +579,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843879795}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.9396926, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 4.59, y: 1, z: 9.77}
+  m_LocalRotation: {x: 0, y: -0.9659258, z: 0, w: 0.2588191}
+  m_LocalPosition: {x: 4, y: 1, z: 11}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -140, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -150, z: 0}
 --- !u!1 &856066990
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +611,7 @@ Transform:
   m_GameObject: {fileID: 856066990}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.9396926, z: 0, w: 0.34202018}
-  m_LocalPosition: {x: 4.59, y: 1, z: 9.77}
+  m_LocalPosition: {x: 8.85, y: 0.1000004, z: -0.84}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1424,6 +1473,7 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 775363259}
   - {fileID: 1970416883}
   - {fileID: 637099957}
   - {fileID: 375464220}

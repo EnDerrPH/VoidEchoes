@@ -3,9 +3,9 @@ using UnityEngine.Events;
 
 public class CombatManager : MonoBehaviour
 {
+    [SerializeField] protected int _health;
     protected GameManager _gameManager;
     protected AudioManager _audioManager;
-    [SerializeField] protected int _health;
     protected Rigidbody _rb;
     public UnityEvent OnDeathEvent, OnHitEvent;
     bool _isDead;

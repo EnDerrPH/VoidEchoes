@@ -79,7 +79,8 @@ public class ShipCombatHandler : CombatManager
         {
             return;
         }
-        MonsterProjectileHandler projectileHandler = other.GetComponent<MonsterProjectileHandler>();
+        ProjectileHandler projectileHandler = other.GetComponent<ProjectileHandler>();
+
         if(projectileHandler != null && projectileHandler.ParticleType == ParticleType.Monster)
         {
             OnHitVFX();

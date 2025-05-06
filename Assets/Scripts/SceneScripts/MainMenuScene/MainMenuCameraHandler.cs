@@ -4,7 +4,7 @@ public class MainMenuCameraHandler : InitializeManager
 {
     [SerializeField] GameObject _hyperDrive;
     [SerializeField] Transform _nextSceneObj;
-    [SerializeField] MainMenuHandler _mainMenuHandler;
+    [SerializeField] UIMainMenuHandler _UIMainMenuHandler;
     [SerializeField] float _speed;
     AudioSource _audioHyperDrive;
     bool _isPlay;
@@ -12,7 +12,7 @@ public class MainMenuCameraHandler : InitializeManager
     public override void Start()
     {
         base.Start();
-        _mainMenuHandler.OnPlayEvent.AddListener(OnPlay);
+        _UIMainMenuHandler.OnPlayEvent.AddListener(OnPlay);
     }
 
     void Update()

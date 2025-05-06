@@ -6,13 +6,10 @@ public class CharacterSelectionButtonHandler : InitializeManager , IPointerClick
 {
     [SerializeField] Image _border;
     [SerializeField] Image _characterImage;
-    [SerializeField] CharacterSceneHandler _characterSelectionHandler;
+    [SerializeField] UICharacterSceneHandler _UICharacterSceneHandler;
+    [SerializeField] CharacterSceneHandler _characterSceneHandler;
     CharacterData _characterData;
-    public override void Start()
-    {
-        base.Start();
-        _characterSelectionHandler = GameObject.FindAnyObjectByType<CharacterSceneHandler>();
-    }
+    int _selectedID;
 
     public void SetCharacterData(Sprite characterSprite, CharacterData characterData)
     {
@@ -20,13 +17,28 @@ public class CharacterSelectionButtonHandler : InitializeManager , IPointerClick
         _characterData = characterData;
     }
 
+    public void SetUICharacterSceneHandler(UICharacterSceneHandler UICharacterSceneHandler)
+    {
+        _UICharacterSceneHandler = UICharacterSceneHandler;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        _characterSelectionHandler.MoveBorder(_border);
-        _characterSelectionHandler.SelectedCharacter = _characterData.CharacterIDNumber;
-        _characterSelectionHandler.CharacterNameText.text = _characterData.CharacterName;
-        _characterSelectionHandler.SelectedCharacterData = _characterData;
-        _characterSelectionHandler.SetSelectedCharacter();
+        _UICharacterSceneHandler.CharacterNameText.text = _characterData.CharacterName;
+        _characterSceneHandler.SetSelectedCharacter(_characterData.CharacterIDNumber);
+        _characterSceneHandler.SetSelectedShip(_characterData.CharacterIDNumber);
+        _UICharacterSceneHandler.MoveBorder(_border);
         _audioManager.PlaySound(_audioManager.GetAudioClipData().MainMenuButtonSFX , .6f);
+        _UICharacterSceneHandler.SetCharacterData(_characterData);
+    }
+
+    public void SetCharacterSceneHandler(CharacterSceneHandler characterSceneHandler)
+    {
+        _characterSceneHandler = characterSceneHandler;
+    }
+
+    public void SetCharacterData(CharacterData characterData)
+    {
+        _characterData = characterData;
     }
 }

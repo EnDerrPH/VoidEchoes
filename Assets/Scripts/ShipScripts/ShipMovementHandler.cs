@@ -17,12 +17,14 @@ public class ShipMovementHandler : ShipManager
     Quaternion _originalRotation = Quaternion.Euler(0f,0f,0f);
     const float _originalYPos = 30f;
     const float _resetTimerLimit = 3f;
+    int _shipFuel;
     float _resetShipTransformTimer = 0f;
     Vector2 _movement; 
     bool _isMovingForward;
     bool _hasInitialized;
     AudioSource _currentMoveAudioSource;
     public static event Action ShipInitializedEvent;
+    UIGameSceneHandler _UIGameSceneHandler;
     
     private void Update()
     {
@@ -34,6 +36,16 @@ public class ShipMovementHandler : ShipManager
     {
         ShipMovement();
         ResetShipTransform();
+    }
+
+    public void SetShipFuel(int fuel)
+    {
+        _shipFuel = fuel;
+    }
+
+    public void SetUIGameHandler(UIGameSceneHandler UIGameHandler)
+    {
+        _UIGameSceneHandler = UIGameHandler;
     }
 
     public void OnRightTurn(InputValue value)
@@ -177,10 +189,13 @@ public class ShipMovementHandler : ShipManager
         {
             return;
         }
-        Vector3 forwardDirection = transform.forward; 
+        Vector3 forwardDirection = transform.forward;
         float zOffset = _moveSpeed * Time.deltaTime;
-        transform.position += forwardDirection * zOffset; 
+        Vector3 targetPosition = transform.position + forwardDirection * zOffset;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, zOffset);
         OnMoveForwardSFX();
+        _shipFuel -= 1;
+        _UIGameSceneHandler.SetFuelText(_shipFuel.ToString());
     }
 
     private void ShipHasInitialized()
@@ -278,6 +293,10 @@ public class ShipMovementHandler : ShipManager
 
     private void SetShipPosition()
     {
+        if(ShipState != ShipState.ResetTransform)
+        {
+            return;
+        }
         Vector3 newOriginalPosition = new Vector3(transform.position.x , _originalYPos, transform.position.z);
         transform.position = Vector3.Lerp(transform.position, newOriginalPosition, _returnSpeed * Time.deltaTime);
     }

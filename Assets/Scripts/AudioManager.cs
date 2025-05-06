@@ -58,12 +58,33 @@ public class AudioManager : MonoBehaviour
         return _audioClipData;
     }
 
+    public void ResetAllAudioSource()
+    {
+        foreach (AudioSource audioSource in _audioPool)
+        {
+            if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+
+            if (audioSource.clip != null)
+            {
+                audioSource.clip = null;
+            }
+
+            if (audioSource.loop)
+            {
+                audioSource.loop = false;
+            }
+        }
+    }
+
     public AudioSource PlaySound(AudioClip clip, float volume = 1f)
     {
         // Find an available AudioSource
         AudioSource availableSource = _audioPool.Find(source => !source.isPlaying);
 
-        if (availableSource == null)
+        if (availableSource == null || availableSource == _audioSourceBGM)
         {
             // Optionally expand the pool
             availableSource = CreateAudioPool();
@@ -74,6 +95,11 @@ public class AudioManager : MonoBehaviour
         availableSource.Play();
 
         return availableSource;
+    }
+
+    public AudioSource SetAudioSource()
+    {
+        return CreateAudioPool();
     }
 
     public void AmplifySound(float factor)

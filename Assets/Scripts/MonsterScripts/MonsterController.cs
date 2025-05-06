@@ -53,7 +53,7 @@ public class MonsterController : BaseController
 
     public void OnHit()
     {
-        _audioManager.PlaySound(_monsterData.OnHitSFX , .6f);
+        _audioManager.PlaySound(_monsterData.OnHitSFX , .4f);
     }
 
     public void SetMonsterData(MonsterData monsterData)

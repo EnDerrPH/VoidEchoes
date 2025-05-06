@@ -9,19 +9,18 @@ public class CharacterData : ScriptableObject
     [SerializeField] GameObject _ship;
     [SerializeField] GameObject _character;
     [SerializeField] Sprite _characterIcon;
-    [SerializeField] int _shipHealth;
-    [SerializeField] int _shipDamage;
-    [Header("CharacterSelection Screen Positions")]
-    [SerializeField] float _startingXPosition;
-    [SerializeField] float _startingZPosition;
     [Header("AttackMode SFX")]
     [SerializeField] List<AudioClip> _audioAttackList = new List<AudioClip>();
+    [Header("Ship Status")]
+    [SerializeField] int _shipHealth;
+    [SerializeField] int _shipDamage;
+    [SerializeField] int _shipFuel;
+
 
     public int CharacterIDNumber {get => _characterIdNumber;}
     public int ShipHealth {get => _shipHealth;}
     public int ShipDamage {get => _shipDamage;}
-    public float StartingXPosition {get => _startingXPosition;}
-    public float StartingZPosition {get => _startingZPosition;}
+    public int ShipFuel {get => _shipFuel;}
     public string CharacterName {get => _characterName;}
     public GameObject Ship {get => _ship;}
     public GameObject Character {get => _character;}

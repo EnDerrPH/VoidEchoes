@@ -20,9 +20,19 @@ public class AudioClipData : ScriptableObject
     [SerializeField] AudioClip _onStopMovementSFX;
     [SerializeField] AudioClip _onDeathSFX;
     [SerializeField] AudioClip _shipOnHitSFX;
-    [Header ("Ship SFX")]
+    [Header ("Loot SFX")]
     [SerializeField] AudioClip _lootNormalSFX;
     [SerializeField] AudioClip _lootRareSFX;
+    [SerializeField] AudioClip _obtainLootSFX;
+    [Header ("MapDevice")]
+    [SerializeField] AudioClip _openMapDeviceSFX;
+    [SerializeField] AudioClip _closeMapDeviceSFX;
+    [SerializeField] AudioClip _showPlanetsSFX;
+    [SerializeField] AudioClip _OnPlanetClickSFX;
+    [SerializeField] AudioClip _OnMapDeviceLoopSFX;
+
+
+
     public AudioClip MainMenuButtonSFX {get => _mainMenuButtonSFX;}
     public AudioClip OnAttackModeSFX {get => _onAttackModeSFX;}
     public AudioClip OnMoveForwardSFX {get => _onMovemeFowardSFX;}
@@ -39,4 +49,10 @@ public class AudioClipData : ScriptableObject
     public AudioClip LootNormalSFX {get => _lootNormalSFX;}
     public AudioClip LootRareSFX {get => _lootRareSFX;}
     public AudioClip ShipoOnHitSFX {get => _shipOnHitSFX;}
+    public AudioClip ObtainLootSFX {get => _obtainLootSFX;}
+    public AudioClip OpenMapDeviceSFX {get => _openMapDeviceSFX;}
+    public AudioClip CloseMapDeviceSFX {get => _closeMapDeviceSFX;}
+    public AudioClip ShowPlanetsSFX {get => _showPlanetsSFX;}
+    public AudioClip OnPlanetClickSFX {get => _OnPlanetClickSFX;}
+    public AudioClip OnMapDeviceLoopSFX {get => _OnMapDeviceLoopSFX;}
 }

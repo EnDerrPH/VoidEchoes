@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Events;
+using System;
 
 public class CharacterController : BaseController
 {
@@ -10,8 +10,6 @@ public class CharacterController : BaseController
     [SerializeField] CharacterState _characterState;
     [SerializeField] bool _isMouseRotate; 
     [SerializeField] Vector2 _movement;
-    Transform _hologramView;
-    [SerializeField] ObjectManager _interactableObject;
     [SerializeField] bool _isFacingStairs;
     [SerializeField] bool _isGoingUp;
     string _idle = "Idle";
@@ -35,7 +33,7 @@ public class CharacterController : BaseController
     Rigidbody _rb;
     public bool IsFacingStairs {get => _isFacingStairs; set => _isFacingStairs = value;}
     public bool IsGoingUp {get => _isGoingUp; set => _isGoingUp = value;}
-    public UnityEvent OnMapDeviceEvent, OnPlayerControlEvent;
+    public event Action OnPlayerControlEvent;
 
     public override void Start()
     {
@@ -51,7 +49,8 @@ public class CharacterController : BaseController
         OnMovingRotate();
         GravityPull();
     }
-
+    
+    #region Input
     public void OnWalkForward(InputValue value)
     {
         if(value.isPressed)
@@ -65,7 +64,6 @@ public class CharacterController : BaseController
             StopMovement();
         }
     }
-
     public void OnWalkBackward(InputValue value)
     {
         if(value.isPressed)
@@ -108,30 +106,17 @@ public class CharacterController : BaseController
         }
     }
 
-    public void OnInteract()
-    {
-        if(_interactableObject == null)
-        {
-            return;
-        }
-        _interactableObject.ActivateObject(true);
-
-        if(_interactableObject.ObjectType == ObjectType.MapDevice)
-        {
-            PlayerInteract(_hologramView);
-            RenderSettings.reflectionIntensity = 0f;
-            OnMapDeviceEvent.Invoke();
-        }
-    }
-
     public void OnMouseRotate(InputValue value)
     {
         _isMouseRotate = value.isPressed;
     }
 
+    #endregion
+
     public override void InitializeComponents()
     {
         base.InitializeComponents();
+        ChangeAnimation(_idle, 0f);
         _rb = GetComponent<Rigidbody>();
     }
 
@@ -164,7 +149,7 @@ public class CharacterController : BaseController
 
     private void OnMouseRotate()
     {
-        if(!_isMouseRotate || _characterState != CharacterState.PlayerControl)
+        if(!_isMouseRotate || _characterState != CharacterState.PlayerControl || GameManager.instance.GetScene() != GameScene.Home)
         {
             return;
         }
@@ -224,7 +209,7 @@ public class CharacterController : BaseController
 
     private void OnMovingRotate()
     {
-        if(!_isMouseRotate || _characterState != CharacterState.PlayerControl)
+        if(!_isMouseRotate || _characterState != CharacterState.PlayerControl || GameManager.instance.GetScene() != GameScene.Home)
         {
             return;
         }
@@ -243,20 +228,24 @@ public class CharacterController : BaseController
     [System.Obsolete]
     private void OnCharacterMovement()
     {
+        if(GameManager.instance.GetScene() != GameScene.Home)
+        {
+            return;
+        }
         _rb.constraints = RigidbodyConstraints.FreezeRotation;
         float moveDirectionY = _movement.y;
         float moveDirectionX = _movement.x;
         _moveDirection = (transform.forward * moveDirectionY + transform.right * moveDirectionX) * _moveSpeed;
-    
         _rb.velocity = new Vector3(_moveDirection.x, _rb.velocity.y, _moveDirection.z);
         CheckYPosition();
         MovementAnimation();
+
     }
 
     private void OnPlayerControl()
     {
         _characterState = CharacterState.PlayerControl;
-        OnPlayerControlEvent.Invoke();
+        OnPlayerControlEvent?.Invoke();
     }
 
     private void MovementAnimation()
@@ -308,17 +297,6 @@ public class CharacterController : BaseController
         _rb.constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
-    private void PlayStairsSFX()
-    {
-        // if(_audioSource.clip == _stairsFootStepSFX)
-        // {
-        //     return;
-        // }
-        // _audioSource.clip = _stairsFootStepSFX;
-        // _audioSource.Play();
-        // _isStairs = false;
-    }  
-
     private void OnStep(float stepHeight , GameObject gameObject)
     {
         Vector3 targetPosition = new Vector3(transform.position.x,transform.position.y + stepHeight , transform.position.z + .5f);
@@ -327,40 +305,19 @@ public class CharacterController : BaseController
 
     void OnCollisionStay(Collision collision)
     {
-        ObjectManager objectManager = collision.gameObject.GetComponent<ObjectManager>();
-        if(objectManager == null)
+        StepHandler stepObject = collision.gameObject.GetComponent<StepHandler>();
+        if(stepObject == null)
         {
             return;
         }
-        if(objectManager.ObjectType == ObjectType.Step && _isFacingStairs)
+        if(_isFacingStairs)
         {
-            StepHandler stepObject = collision.gameObject.GetComponent<StepHandler>();
             OnStep(stepObject.StepHeight, collision.gameObject);
-        }
-
-        if(objectManager.ObjectType == ObjectType.MapDevice)
-        {
-            _interactableObject = objectManager;
-            objectManager.ActivateCanvas(true);
         }
     }
 
-    private void OnCollisionExit(Collision collision)
+    void OnCollisionExit(Collision collision)
     {
-        ObjectManager objectManager = collision.gameObject.GetComponent<ObjectManager>();
-        if(objectManager == null)
-        {
-            return;
-        }
         
-        if (objectManager.ObjectType == ObjectType.MapDevice)
-        {
-            _interactableObject.ActivateObject(false);
-            _interactableObject.ActivateCanvas(false);
-            _interactableObject = null;
-            RenderSettings.reflectionIntensity = 1f;
-            LockCursor();
-            OnPlayerControl();
-        }
     }
 }

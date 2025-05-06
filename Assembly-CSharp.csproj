@@ -66,13 +66,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuCloseFunctionalitySettings.cs" />
-    <Compile Include="Assets\Scripts\UI\UIPlanetHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\References\PieMenuInfo.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\ShipManager.cs" />
+    <Compile Include="Assets\Scripts\UI\UICharacterSceneHandler.cs" />
     <Compile Include="Assets\Scripts\GeyserTrapHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuSelectionSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\ImageFilledClickableSlices.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\MainMenuScene\MainMenuHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuBackgroundSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuAnimationsSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemNameChanger.cs" />
@@ -81,7 +80,6 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Demos\Displaying a Pie Menu\New Input System\PieMenuDemoControls.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\PieMenuGeneralSettingsHandler.cs" />
     <Compile Include="Assets\Scripts\SceneScripts\CharacterScene\CharacterSceneHandler.cs" />
-    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\Planets.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\MenuItemSelector.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\New Input System\MouseAndKeyboard_NEW_INPUT_SYSTEM.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconDirRotationCalculator.cs" />
@@ -98,9 +96,10 @@
     <Compile Include="Assets\Scripts\BaseScripts\WeaponManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconEnableHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconOffsetChangeHandler.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\PlanetDataList.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\References\PieMenuElements.cs" />
-    <Compile Include="Assets\Scripts\BaseScripts\ObjectManager.cs" />
     <Compile Include="Assets\Scripts\ReflectionTriggerHandler.cs" />
+    <Compile Include="Assets\Scripts\InteractableObjects\InteractableObjectManager.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Toggler\PieMenuToggler.cs" />
     <Compile Include="Assets\Scripts\CharacterScripts\CharacterController.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\Shape Settings\PieMenuShapeSettings.cs" />
@@ -109,6 +108,7 @@
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\AudioClipData.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\SelectionCalculator.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\MapData.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\ShipData.cs" />
     <Compile Include="Assets\Scripts\ReflectionHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\CustomShapeButton.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\General Settings Handler\MenuItemsCreator.cs" />
@@ -116,18 +116,20 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\PieMenuSharedLifecycleHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconCreator.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\MenuItemAdder.cs" />
+    <Compile Include="Assets\Scripts\MonsterScripts\ProjectileHandler.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\ThemeEditor\ThemedUI.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\Animation Settings\PieMenuAnimationsSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Menu Item\IMenuItemClickHandler.cs" />
     <Compile Include="Assets\Scripts\MonsterScripts\MonsterCombatHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\CustomAttributes\ReadonlyAttribute\ReadonlyAttribute.cs" />
+    <Compile Include="Assets\Scripts\UI\GameScene\UIGameSceneHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuPreviewModeSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Info Panel Settings Handler\InfoPanelResizer.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\PieMenuDrawer.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Toggler\MenuItemTemplate.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\InputDeviceGetter.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMainMenuHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\MenuItemDisabler.cs" />
-    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\PlanetList.cs" />
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Misc\ResetDemo.cs" />
     <Compile Include="Assets\Scripts\ShipScripts\ShipCombatHandler.cs" />
     <Compile Include="Assets\Scripts\BaseScripts\InitializeManager.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Others\PrefabIsolationModeHelper.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Singleton\PieMenuSharedReferences.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\CharacterData.cs" />
+    <Compile Include="Assets\Scripts\UI\HomeScene\UIHomeSceneHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Info Panel Settings Handler\PieMenuInfoPanelSettingsHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuInfoPanelSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconMover.cs" />
@@ -157,12 +160,11 @@
     <Compile Include="Assets\Imported Assets\SlimUI\Modern Menu 1\Scripts\Misc\ExtraLinks.cs" />
     <Compile Include="Assets\Scripts\SceneScripts\HomeScene\HomeSceneHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Demos\Displaying a Pie Menu\Old Input System\DisplayWithOldInputSystemDemo.cs" />
+    <Compile Include="Assets\Scripts\UI\HomeScene\MapPreviewHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Menu Item Selection\Input Devices\New Input System\PieMenuControls.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\PieMenuBackgroundSettingsHandler.cs" />
     <Compile Include="Assets\Scripts\CameraMiniMapHandler.cs" />
-    <Compile Include="Assets\Scripts\SceneScripts\GameSceneScripts\UIGameSceneHandler.cs" />
     <Compile Include="Assets\Scripts\SceneScripts\CharacterScene\CharacterSelectionButtonHandler.cs" />
-    <Compile Include="Assets\Scripts\MonsterScripts\MonsterProjectileHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\PieMenuDisplayer.cs" />
     <Compile Include="Assets\Imported Assets\Sci-Fi UI\Demo_Assets\scripts\GUI_Demo.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\PieMenuGeneralSettings.cs" />
@@ -178,6 +180,8 @@
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\MenuItemIconsSettings.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects Scripts\MonsterData.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Menu Items Manager\MenuItemHider.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects Scripts\PlanetData.cs" />
+    <Compile Include="Assets\Scripts\SceneScripts\GameSceneScripts\PlanetHandler.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu\Settings\Audio Settings\PieMenuAudioSettings.cs" />
     <Compile Include="Assets\Imported Assets\Simple Pie Menu\Scripts\Pie Menu Shared\Settings Handlers\Icon Settings Handler\IconScaleChangeHandler.cs" />
     <Compile Include="Assets\Scripts\SceneScripts\GameSceneScripts\GameSceneHandler.cs" />

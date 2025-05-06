@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class LoadingSceneManager : MonoBehaviour
 {
     [SerializeField] GameObject _loadingElements;
+    AudioManager _audioManager;
     bool _isLodingScreen;
     [SerializeField] float _timer = 0f;
     float _timerLimit = 1f;
@@ -13,6 +14,11 @@ public class LoadingSceneManager : MonoBehaviour
     void Awake()
     {
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        _audioManager = AudioManager.instance;
     }
 
     // Update is called once per frame
@@ -47,6 +53,7 @@ public class LoadingSceneManager : MonoBehaviour
 
         // Don't allow the scene to activate until it's fully loaded
         asyncOperation.allowSceneActivation = false;
+        _audioManager.ResetAllAudioSource();
         SetScene(sceneName);
     }
 

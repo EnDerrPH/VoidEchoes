@@ -176,17 +176,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 20
   _mouseSensitivity: 50
-  _audioSource: {fileID: 0}
-  _stairsFootStepSFX: {fileID: 0}
-  _normalFootStepSFX: {fileID: 0}
+  _characterState: 0
+  _isMouseRotate: 0
+  _movement: {x: 0, y: 0}
+  _interactableObject: {fileID: 0}
   _isFacingStairs: 0
   _isGoingUp: 1
-  _stairUpSpeed: 20
-  _stairDownSpeed: 10
-  _startSmoothSpeed: 0.8
-  _stairOffset: 1
-  _origin: {fileID: 3745113539857372564}
-  _interactableCanvas: {fileID: 8805450023442562784}
+  OnMapDeviceEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPlayerControlEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8524007371636946615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,10 +350,5 @@ PrefabInstance:
 --- !u!224 &4600359627172835704 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7104798387758341470, guid: 0c45a2b345c065a4f8f7b7d72b224c5e, type: 3}
-  m_PrefabInstance: {fileID: 6723472684349778982}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8805450023442562784 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2845620670003040966, guid: 0c45a2b345c065a4f8f7b7d72b224c5e, type: 3}
   m_PrefabInstance: {fileID: 6723472684349778982}
   m_PrefabAsset: {fileID: 0}

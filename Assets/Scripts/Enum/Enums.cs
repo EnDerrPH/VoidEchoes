@@ -14,6 +14,7 @@ public enum ParticleType
     Player,
     Monster,
     Trap,
+    Loot,
     Default
 }
 

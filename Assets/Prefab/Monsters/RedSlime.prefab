@@ -342,7 +342,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &2201139330015140419
 BoxCollider:
@@ -386,7 +386,6 @@ MonoBehaviour:
   _weapon: {fileID: 0}
   _monsterCombatHandler: {fileID: 6224468919647445649}
   _audioSource: {fileID: 5328043764441994108}
-  _chaseRangeDistance: 400
   _attackingDistance: 300
 --- !u!114 &6224468919647445649
 MonoBehaviour:
@@ -407,7 +406,6 @@ MonoBehaviour:
   OnHitEvent:
     m_PersistentCalls:
       m_Calls: []
-  _monsterController: {fileID: 1088229979515636052}
 --- !u!1 &3516985908211373310
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +495,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d9c0226bd4324f01bc178cf4a515ef84, type: 2}
+  - {fileID: 2100000, guid: 677577ab3e8e50542a74ca9cf6a1407d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
